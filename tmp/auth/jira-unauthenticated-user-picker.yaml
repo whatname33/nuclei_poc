@@ -6,14 +6,11 @@ info:
   severity: info
   tags: atlassian,jira
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/secure/popups/UserPickerBrowser.jspa"
-    matchers-condition: and
     matchers:
       - type: word
         words:
-          - 'Email'
-          - 'Full Name'
-          - 'Username'
+          - 'user-picker'

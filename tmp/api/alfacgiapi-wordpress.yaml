@@ -1,15 +1,11 @@
 id: alfacgiapi-wordpress
-
 info:
   name: alfacgiapi
   author: pussycat0x
   severity: low
-  description: Searches for sensitive directories present in the alfacgiapi plugin.
+  description: Searches for sensitive directories present in the ALFA_DATA.
   reference: https://www.exploit-db.com/ghdb/6999
   tags: wordpress,listing
-  metadata:
-    max-request: 4
-
 http:
   - method: GET
     path:

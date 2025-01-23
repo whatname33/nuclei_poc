@@ -3,10 +3,10 @@ id: tomcat-scripts
 info:
   name: Detect Tomcat Exposed Scripts
   author: Co0nan
-  severity: low
+  severity: info
   tags: apache,tomcat
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/examples/servlets/index.html"
