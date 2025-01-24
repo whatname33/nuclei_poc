@@ -9,21 +9,18 @@ info:
     - https://github.com/Cl0udG0d/SZhe_Scan # vendor homepage
 
 requests:
-  - raw:
+  - payloads:
+      Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
+    attack: sniper
+    threads: 100
+
+    raw:
       - |
         POST /login/ HTTP/1.1
-        Host: {{Hostname}}
+        Host: {{Subdomains}}
         Content-Type: application/x-www-form-urlencoded
 
-        email={{username}}&password={{password}}&remeber=true
-
-    payloads:
-      username:
-        - springbird@qq.com
-      password:
-        - springbird
-    attack: pitchfork
-
+        email=springbird@qq.com&password=springbird&remeber=true
     matchers-condition: and
     matchers:
 

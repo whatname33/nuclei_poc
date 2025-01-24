@@ -8,22 +8,18 @@ info:
   tags: default-login,wso2
 
 requests:
-  - raw:
+  - payloads:
+      Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
+    attack: sniper
+    threads: 100
+
+    raw:
       - |
         POST /carbon/admin/login_action.jsp HTTP/1.1
-        Host: {{Hostname}}
+        Host: {{Subdomains}}
         Content-Type: application/x-www-form-urlencoded
 
-        username={{username}}&password={{password}}
-
-    payloads:
-      username:
-        - admin
-      password:
-        - admin
-    attack: pitchfork
-
-    redirects: false
+        username=admin&password=admin
     matchers:
       - type: word
         words:

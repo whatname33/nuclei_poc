@@ -14,8 +14,6 @@ info:
   metadata:
     verified: true
     max-request: 1
-    vendor: umbraco
-    product: umbraco_cms
     shodan-query: http.title:"Umbraco"
   tags: panel,umbraco,detect
 
@@ -24,6 +22,7 @@ http:
     path:
       - "{{BaseURL}}/umbraco"
 
+    cookie-reuse: true
     host-redirects: true
     max-redirects: 3
 
@@ -37,4 +36,5 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a004730450220070ef4fd979f46aed1ae1157ae63e43f74db998a7a649a5e379dda637c4d00ca022100def48bc6f7db6494db87d00abeb71f48fac201617945e76b9c7adb20174607c3:922c64590222798bb761d5b6d8e72950
+
+# digest: 4a0a0047304502202229f879ff4c87a87a21320c00c636312bc1499a55c3ee5a4fd974e56a8ffec5022100a8b5cbc3124c960c4c2c944626123705fb1484022c46e5a1ea637a5014be71ce:922c64590222798bb761d5b6d8e72950
