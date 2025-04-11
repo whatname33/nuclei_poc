@@ -1,18 +1,21 @@
 id: github
 
 info:
-  name: GitHub
+  name: GitHub User Name Information - Detect
   author: dwisiswant0
-  description: This OSINT template looks for information about a user name.
   severity: info
+  description: GitHub user name information check was conducted.
   classification:
     cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0.0
+    cvss-score: 0
     cwe-id: CWE-200
+  metadata:
+    max-request: 1
   tags: osint,osint-coding,github
 
 self-contained: true
-requests:
+
+http:
   - method: GET
     path:
       - "https://github.com/{{user}}"
@@ -27,3 +30,5 @@ requests:
         part: body
         words:
           - "p-nickname vcard-username d-block"
+
+# digest: 4a0a00473045022020fdb0519b6e4a4045b8abf5ca989876afc9a2fa73035442c47091dbe0ed4e10022100873e85c499ed1e2cd434fce0ece18251c28ba28ea2a2ce0e7e309649b0372391:922c64590222798bb761d5b6d8e72950
