@@ -1,25 +1,26 @@
 id: oracle-business-control
 
 info:
-  name: Oracle Commerce Business Control Center
+  name: Oracle Commerce Business Control Center Login Panel - Detect
   author: dhiyaneshDk
   severity: info
-  reference: https://www.shodan.io/search?query=http.title%3A%22Oracle+Commerce%22
+  description: Oracle Commerce Business Control Center login panel was detected.
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
+    cwe-id: CWE-200
+  metadata:
+    max-request: 1
+    vendor: oracle
+    product: commerce
+    shodan-query: http.title:"Oracle Commerce"
   tags: oracle,login,panel
 
-requests:
-  - payloads:
-      Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
-    attack: sniper
-    threads: 100
+http:
+  - method: GET
+    path:
+      - '{{BaseURL}}/atg/bcc'
 
-    raw:
-      - |
-        GET /atg/bcc HTTP/1.1
-        Host: {{Subdomains}}
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0
-        Accept-Encoding: gzip, deflate
-        Accept: */*
     matchers-condition: and
     matchers:
       - type: word
@@ -29,3 +30,4 @@ requests:
       - type: status
         status:
           - 200
+# digest: 4a0a00473045022100ce5dd63671a6d2da95b637b5237a701f26cb359231b3bc219a9139f12c7e6d8f02206b2567104c4e867935b9b0803f71348ff5d5bda8fec9fad475a69949e85d324f:922c64590222798bb761d5b6d8e72950
