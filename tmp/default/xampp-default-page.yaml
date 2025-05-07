@@ -7,7 +7,6 @@ info:
   metadata:
     shodan-query: http.title:"XAMPP"
   tags: tech,php,xampp,apache
-  mongoid: 0000
 
 requests:
   - method: GET
