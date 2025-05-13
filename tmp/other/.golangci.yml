@@ -1,27 +1,13 @@
-run:
-  tests: false
-
 linters-settings:
-  lll:
-    line-length: 100
+  govet:
+    check-shadowing: true
+  misspell:
+    locale: US
 
 linters:
-  disable-all: true
-  enable:
-    - errcheck
-    - ineffassign
-    - gas
-    - gofmt
-    - golint
-    - gosimple
-    - govet
-    - lll
-    - varcheck
-    - unused
+  enable-all: true
 
 issues:
-  exclude-rules:
-    - linters:
-        - gosec
-      text: "G404: "
-      
+  exclude-use-default: false
+  max-per-linter: 0
+  max-same-issues: 50
