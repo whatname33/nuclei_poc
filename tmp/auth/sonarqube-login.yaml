@@ -1,33 +1,24 @@
 id: sonarqube-login
 
 info:
-  name: SonarQube Panel - Detect
+  name: SonarQube panel detect
   author: dhiyaneshDk
   severity: info
-  description: SonarQube panel was detected.
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0
-    cwe-id: CWE-200
-  metadata:
-    max-request: 1
-    vendor: sonarsource
-    product: sonarqube
-  tags: panel,sonarqube
+  tags: panel
 
-http:
-  - method: GET
-    path:
-      - "{{BaseURL}}/sessions/new"
+requests:
+  - payloads:
+      Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
+    attack: sniper
+    threads: 100
 
-    matchers-condition: and
+    raw:
+      - |
+        GET /sessions/new HTTP/1.1
+        Host: {{Subdomains}}
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko)
     matchers:
       - type: word
-        part: body
         words:
-          - "SonarQube"
-
-      - type: status
-        status:
-          - 200
-# digest: 4a0a00473045022100ce39a78c1e1d7500cd1ead820bf1ab4d3f13161f07452276a6724ff6936e7ac30220795d7ef96e3e50634346f0d83b56890587dda9d52172725f82a98dccc3162d21:922c64590222798bb761d5b6d8e72950
+          - "<title>SonarQube</title>"
+        part: body
