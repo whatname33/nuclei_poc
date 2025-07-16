@@ -3,8 +3,7 @@ id: webeditors
 info:
   name: Web Editors
   author: pwnmachine
-  severity: info
-  tags: panel
+  severity: medium
 
 requests:
   - method: GET

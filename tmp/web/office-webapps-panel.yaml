@@ -10,10 +10,16 @@ info:
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
     cwe-id: CWE-668
+    cpe: cpe:2.3:a:microsoft:office_web_apps_server:*:*:*:*:*:*:*:*
   metadata:
     verified: true
     max-request: 2
-    shodan-query: html:"Provide a link that opens Word"
+    vendor: microsoft
+    product: office_web_apps_server
+    shodan-query:
+      - html:"Provide a link that opens Word"
+      - http.html:"provide a link that opens word"
+    fofa-query: body="provide a link that opens word"
   tags: panel,office-webapps,login,microsoft
 
 http:
@@ -39,5 +45,4 @@ http:
           - "_OFUError"
           - "Wrong file type"
         condition: and
-
-# digest: 4b0a00483046022100f859af4f95a5d6747812c8f65ef567a4b6d1c67c41da899dac69eed90ac7d1c80221008379c5e7a2ef29c6e456a8fa42d74b877189192792b9abbe56ff2bd7129d7575:922c64590222798bb761d5b6d8e72950
+# digest: 490a004630440220109cdc1d0f1f58e1a6c965ef4cbf27601e0543b4655db33da264e2603d80631002201b9c9c744ac32a888fd09e05f2a58a46992e18fb5a98b828d766d2989ffaa158:922c64590222798bb761d5b6d8e72950

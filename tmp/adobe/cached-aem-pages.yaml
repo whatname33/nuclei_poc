@@ -1,12 +1,10 @@
 id: cached-pages-aem
 
 info:
-  name: Invalidate / Flush Cached Pages on AEM
+  name: Invalidate / Flush Cached Pages From AEM
   author: hetroublemakr
   severity: low
-  tags: aem
-
-  # reference: https://twitter.com/AEMSecurity
+  # reference: @AEMSecurity
 
 requests:
   - method: GET
@@ -15,7 +13,6 @@ requests:
     headers:
       CQ-Handle: /content
       CQ-Path: /content
-    matchers-condition: and
     matchers:
       - type: word
         words:
