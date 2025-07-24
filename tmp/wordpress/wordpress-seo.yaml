@@ -1,7 +1,7 @@
 id: wordpress-wordpress-seo
 
 info:
-  name: Yoast SEO – Advanced SEO with real-time guidance and built-in AI Detection
+  name: Yoast SEO Detection
   author: ricardomaia
   severity: info
   reference:
@@ -11,13 +11,14 @@ info:
     wpscan: https://wpscan.com/plugin/wordpress-seo
   tags: tech,wordpress,wp-plugin,top-100,top-200
 
-http:
+requests:
   - method: GET
+
     path:
       - "{{BaseURL}}/wp-content/plugins/wordpress-seo/readme.txt"
 
     payloads:
-      last_version: helpers/wordpress/plugins/wordpress-seo.txt
+      last_version: ../../../helpers/wordpress/plugins/wordpress-seo.txt
 
     extractors:
       - type: regex
