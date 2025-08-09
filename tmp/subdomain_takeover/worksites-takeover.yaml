@@ -4,13 +4,12 @@ info:
   name: Worksites Takeover Detection
   author: melbadry9,dogasantos
   severity: high
-  description: Worksites takeover was detected.
   reference:
     - https://melbadry9.gitbook.io/blog/dangling-dns/xyz-services/ddns-worksites
   metadata:
     verified: true
     max-request: 2
-  tags: takeover,dns
+  tags: takeover
 
 dns:
   - name: "{{FQDN}}"
@@ -44,8 +43,4 @@ http:
         status:
           - 404
 
-    extractors:
-      - type: dsl
-        dsl:
-          - cname
-# digest: 490a0046304402203d7ff8f0bc643ef971aecf4234c610dc104acd170978f53ceaa26e53651c0025022070fc726709fdd4512ff4b7e05c02a56d53ad2262853b6a66ab563843a02bd89d:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a0047304502205487901d15ebd8450f719d6013c6632a0d1a6852099231318152fb6ef9d5754a022100e676f73724db6a496bd9fab4a8e5ea4467204fea4e512fa2e809fd0eb8f5610a:922c64590222798bb761d5b6d8e72950

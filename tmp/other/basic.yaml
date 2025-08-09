@@ -1,18 +1,14 @@
-id: basic-network-request
+id: basic-whois-example
 
 info:
-  name: Basic Network Request
+  name: test template for WHOIS
   author: pdteam
   severity: info
 
-network:
-  - host: 
-      - "{{Hostname}}"
-    inputs:
-      - data: "PING\r\n"
-    read-size: 4
-    matchers:
-      - type: word
-        part: data
-        words:
-          - "PONG"
+whois:
+  - query: "{{Host}}"
+    extractors:
+      - type: kval
+        kval:
+          - "expiration date"
+          - "registrar"

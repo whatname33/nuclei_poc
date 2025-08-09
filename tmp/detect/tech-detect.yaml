@@ -2,7 +2,7 @@ id: tech-detect
 
 info:
   name: Wappalyzer Technology Detection
-  author: hakluke,righettod
+  author: hakluke
   severity: info
   metadata:
     max-request: 1
@@ -2235,22 +2235,6 @@ http:
         condition: or
         part: body
 
-      - type: word
-        name: ibm-websphere-application-server
-        words:
-          - 'SRVE0255E:'
-          - 'A WebGroup/Virtual Host to handle'
-        condition: or
-        part: body
-
-      - type: word
-        name: ibm-websphere-application-server
-        words:
-          - '$wsep:'
-          - '$WSEP:'
-        condition: or
-        part: all_headers
-
       - type: regex
         name: bootstrap
         regex:
@@ -2438,12 +2422,12 @@ http:
         condition: or
         part: body
 
-      - type: word
+      - type: regex
         name: gitea
-        words:
-          - 'Powered by Gitea'
+        regex:
+          - '<div class="ui left">\n\s+© Gitea Version: ([\d.]+)'
+        condition: or
         part: body
-        case-insensitive: true
 
       - type: regex
         name: all-in-one-seo-pack
@@ -3571,24 +3555,11 @@ http:
           - "X-Jenkins"
         part: header
 
-
       - type: word
         name: cloudflare
         words:
           - "cloudflare"
-        part: server
-
-      - type: regex
-        name: cloudflare
-        regex:
-          - ".*"
-        part: cf_cache_status
-
-      - type: regex
-        name: cloudflare
-        regex:
-          - ".*"
-        part: cf_ray
+        part: header
 
       - type: word
         name: akamai
@@ -3748,10 +3719,4 @@ http:
         words:
           - "istio-envoy"
 
-      - type: word
-        name: clickhouse
-        part: header
-        words:
-          - "X-ClickHouse-Summary"
-        case-insensitive: true
-# digest: 490a004630440220389073c1c10e12dbc38990afa3ad680bf79389f77a4465f98e0fcfef71b417aa02202a6c0c2698ed3889adfaaabc8e7ea14aaefcd4422d16aaa70b67f854944797c4:922c64590222798bb761d5b6d8e72950
+# digest: 490a0046304402204061b0944b00375a160cf2b35d1cdc2d3cd8173d269560427d9d2b845265b48702200981adb27025c4192db4f5b6e2b888ac59a404d5583feb3f2e4346a1edd9a897:922c64590222798bb761d5b6d8e72950

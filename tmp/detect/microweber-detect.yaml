@@ -4,14 +4,12 @@ info:
   name: Microweber Detect
   author: princechaddha
   severity: info
-  reference:
-    - https://github.com/microweber/microweber
+  reference: https://github.com/microweber/microweber
   metadata:
-    max-request: 1
-    shodan-query: http.favicon.hash:780351152
+    shodan-query: 'http.favicon.hash:780351152'
   tags: tech,microweber,oss
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}"

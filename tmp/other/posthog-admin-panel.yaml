@@ -7,16 +7,12 @@ info:
   description: PostHog login panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:posthog:posthog:*:*:*:*:*:*:*:*
   metadata:
     verified: true
     max-request: 1
-    vendor: posthog
-    product: posthog
     shodan-query: http.title:"posthog"
-    fofa-query: title="posthog"
-    google-query: intitle:"posthog"
   tags: panel,posthog
 
 http:
@@ -37,4 +33,5 @@ http:
       - type: status
         status:
           - 200
-# digest: 4b0a0048304602210096229a08d30b93f76ab40aa42561a013cb4e81fed422a385d4a88825fea2b45b0221009f1bcb9aa0f2e66b3262b45a07fe1d643b4a4a7c7227108371c20ae959e23057:922c64590222798bb761d5b6d8e72950
+
+# digest: 4a0a0047304502201e7ff635766dc5bc3b45cd3c7907db1611f30e412a058c9e94f043ddba966bf3022100db1b5177ef0a399e682869dc8b46a80ed0946d81775a9a6b3d61645ef8258046:922c64590222798bb761d5b6d8e72950

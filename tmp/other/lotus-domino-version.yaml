@@ -6,9 +6,9 @@ info:
   severity: info
   tags: tech,lotus
   metadata:
-    max-request: 7
+  mongoid: 0000
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/homepage.nsf"

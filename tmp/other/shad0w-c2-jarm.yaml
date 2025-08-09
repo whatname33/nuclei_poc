@@ -11,7 +11,7 @@ info:
     - https://github.com/bats3c/shad0w
   metadata:
     max-request: 1
-  tags: jarm,network,c2,ir,osint,cti,shad0w,tcp
+  tags: shad0w,c2,osint,ir,jarm
 tcp:
   - inputs:
       - data: 2E
@@ -22,4 +22,5 @@ tcp:
       - type: dsl
         dsl:
           - "jarm(Hostname) == '2ad2ad0002ad2ad00042d42d000000ad9bf51cc3f5a1e29eecb81d0c7b06eb'"
-# digest: 4a0a00473045022068c82884025754b6624a704b998a079d6ea8cc9c5d1875e94a620a43a0cc74b602210081b3936eb9a38b7af59a8da0e390912d9cce863a38d1c55f57b6a6169f1cdb92:922c64590222798bb761d5b6d8e72950
+
+# digest: 490a00463044022079cf01a90f8c6660e5c5c9521af751d675dae1162e6a5887c531d2e5536b671e02201d6976f756501cf25d38feea570e38f90557c28d949e34fbef6a8d17991509a4:922c64590222798bb761d5b6d8e72950

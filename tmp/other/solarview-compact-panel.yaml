@@ -7,23 +7,13 @@ info:
   description: SolarView Compact panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:o:contec:solarview_compact_firmware:*:*:*:*:*:*:*:*
   metadata:
     verified: true
     max-request: 1
-    vendor: contec
-    product: solarview_compact_firmware
-    shodan-query:
-      - http.html:"SolarView Compact"
-      - http.favicon.hash:"-244067125"
-      - http.html:"solarview compact"
-      - cpe:"cpe:2.3:o:contec:solarview_compact_firmware"
-    fofa-query:
-      - body="solarview compact" && title="top"
-      - icon_hash="-244067125"
-      - body="solarview compact"
-  tags: panel,solarview,iot,contec
+    shodan-query: http.html:"SolarView Compact"
+  tags: panel,solarview,iot
 
 http:
   - method: GET
@@ -40,4 +30,5 @@ http:
       - type: status
         status:
           - 200
-# digest: 4b0a004830460221009b70220233c474ceec3405c67a97e7e8ebbbf075f665d3023a5c8b7cb7946cd102210092d7c21f356d87e93ff9f3923d44b70859adf29e89add398c407d1ac49087b45:922c64590222798bb761d5b6d8e72950
+
+# digest: 490a0046304402204e707aac654ff7dbe9ff4b1226bbdff61e1abe1ad2be7c3a09fa434f4c3e19460220185d8f48983da359c1c4c2b389be7fc0060cda60349d14e12ea57840a5712073:922c64590222798bb761d5b6d8e72950

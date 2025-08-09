@@ -2,7 +2,7 @@ id: swagger-api
 
 info:
   name: Public Swagger API - Detect
-  author: pdteam,c-sh0
+  author: Redflare-Cyber
   severity: info
   description: Public Swagger API was detected.
   reference: https://swagger.io/
@@ -11,7 +11,7 @@ info:
     cwe-id: CWE-200
   metadata:
     verified: true
-    max-request: 59
+    max-request: 100
     shodan-query: "http.title:\"swagger\""
   tags: exposure,api,swagger
 
@@ -72,7 +72,6 @@ http:
         - "/api/swagger_doc.json"
         - "/docu"
         - "/docs"
-        - "/docs/"
         - "/swagger"
         - "/api-doc"
         - "/doc/"
@@ -81,7 +80,62 @@ http:
         - "/swagger-ui/swagger-ui/swagger-ui-bundle.js"
         - "/webjars/swagger-ui/swagger-ui-bundle.js"
         - "/webjars/swagger-ui/index.html"
-
+        - "/v2/api-docs"
+        - "/api/v2/api-docs"
+        - "/swagger-resources"
+        - "/swagger-resources/configuration/ui"
+        - "/swagger-resources/configuration/security"
+        - "/swagger-resources/restservices"
+        - "/swagger-resources/configuration"
+        - "/swagger-ui/index"
+        - "/swagger-ui/"
+        - "/api/swagger-ui/"
+        - "/api-docs/"
+        - "/api-docs/index.html"
+        - "/swagger-ui/swagger-ui.css"
+        - "/swagger-ui/swagger-ui-bundle.js"
+        - "/swagger-ui/swagger-ui.css"
+        - "/api/v1/swagger.json"
+        - "/api/v1/swagger.yaml"
+        - "/v1/swagger.json"
+        - "/v1/swagger.yaml"
+        - "/v2/swagger.json"
+        - "/v2/swagger.yaml"
+        - "/swagger/v2/swagger.json"
+        - "/swagger/v2/swagger.yaml"
+        - "/openapi.json"
+        - "/openapi.yaml"
+        - "/openapi/v1/openapi.json"
+        - "/openapi/v1/openapi.yaml"
+        - "/api/openapi.json"
+        - "/api/openapi.yaml"
+        - "/api/docs/index.html"
+        - "/rest/api-docs"
+        - "/swagger-ui-dist/"
+        - "/swagger-ui-dist/index.html"
+        - "/docs/index.html"
+        - "/documentation"
+        - "/documentation/swagger.json"
+        - "/documentation/swagger.yaml"
+        - "/api/swagger/index"
+        - "/swaggerapi"
+        - "/api/swaggerapi"
+        - "/api/swagger-api"
+        - "/swagger/api-docs"
+        - "/swagger-api"
+        - "/api/swagger-api"
+        - "/swagger/ui/index.html"
+        - "/swagger/ui/"
+        - "/doc/swagger"
+        - "/help"
+        - "/apidocs/"
+        - "/api-docs/swagger-ui.html"
+        - "/api-docs/swagger-ui/index.html"
+        - "/swagger/swagger-ui/index.html"
+        - "/swagger/swagger-ui/"
+        - "/api/documentation"
+        - "/docs/swagger.json"
+        - "/docs/swagger.yaml"
     headers:
       Accept: text/html
     stop-at-first-match: true
@@ -90,13 +144,17 @@ http:
     matchers:
       - type: word
         words:
-          - "swagger:"
-          - "Swagger 2.0"
-          - "\"swagger\":"
-          - "Swagger UI"
-          - "loadSwaggerUI"
-          - "**token**:"
-          - "id=\"swagger-ui"
+          - 'swagger:'
+          - 'Swagger 2.0'
+          - '"swagger":'
+          - 'Swagger UI'
+          - 'loadSwaggerUI'
+          - '**token**:'
+          - 'id="swagger-ui'
+          - 'OpenAPI'
+          - 'openapi:'
+          - '"openapi":'
+          - 'ReDoc'
         condition: or
 
       - type: status
@@ -108,5 +166,5 @@ http:
         part: body
         group: 1
         regex:
-          - " @version (v[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})"
-# digest: 490a0046304402201645d018e2ed9de3f5bc841114524f439ae06ecf4133025dbee3ee7872ff2e83022062566c01999211c9bf3d58acfb05722e359c0b14375e23ed28791ae4244a3484:922c64590222798bb761d5b6d8e72950
+          - 'openapi[": ]*"?([0-9]+\.[0-9]+\.?[0-9]*)'
+          - ' @version (v[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})'

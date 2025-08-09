@@ -7,20 +7,12 @@ info:
   description: Fortinet FortiMail login panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:fortinet:fortimail:*:*:*:*:*:*:*:*
   metadata:
     max-request: 1
-    vendor: fortinet
-    product: fortimail
-    shodan-query:
-      - title:"Fortimail"
-      - http.title:"fortimail"
-    fofa-query:
-      - Fortimail && port=443
-      - fortimail && port=443
-      - title="fortimail"
-    google-query: intitle:"fortimail"
+    shodan-query: title:"Fortimail"
+    fofa-query: Fortimail && port=443
   tags: panel,fortinet,fortimail,login
 
 http:
@@ -38,4 +30,5 @@ http:
       - type: status
         status:
           - 200
-# digest: 490a0046304402205b99c6a844ec05fbf28c95c453053ed73451212e7c35c8a2f7832f9e3737ef1902206db2238549ee4915d726c85403e9ce3d4ee5b7af7982fcaf47e22eb48fdbe47a:922c64590222798bb761d5b6d8e72950
+
+# digest: 4b0a00483046022100e56d38aa27716a6a92bd7829a3917e5bf258df4b4a3f3e1f52545ce97ae77a73022100e8308eb3aee857b299bb771ac1a696975022b32e0a3398d4c5dac4db034bed0c:922c64590222798bb761d5b6d8e72950

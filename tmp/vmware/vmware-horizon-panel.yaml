@@ -9,12 +9,10 @@ info:
     - https://www.exploit-db.com/ghdb/6496
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:vmware:horizon:*:*:*:*:macos:*:*:*
   metadata:
     max-request: 2
-    vendor: vmware
-    product: horizon
   tags: horizon,vmware,edb,panel
 
 http:
@@ -33,4 +31,5 @@ http:
           - '(?m)^Missing route token in request$'
           - 'VMware Horizon'
         condition: or
-# digest: 4a0a0047304502205a22e8fc4ea45d546d008b9097e0d9eef73bfdeb7de53b95df7f5c2d7dffa82b022100c66bcca0ccc6de57746abae749742920e4adbaef6f6958c3f02bb14b08d786e4:922c64590222798bb761d5b6d8e72950
+
+# digest: 4b0a00483046022100ea478edff92a96a31c49a45aef1653befb3fb6f41cba831150bfda7842f124600221008c6ec93d0f731eb0a0ae0a459d0dad07e08af57abb60be66749fb3eecc694158:922c64590222798bb761d5b6d8e72950

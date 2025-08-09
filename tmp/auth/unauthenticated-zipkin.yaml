@@ -7,9 +7,11 @@ info:
   description: Unauthenticated access to Zipkin was discovered.
   reference:
     - https://zipkin.io/
-  tags: unauth
+  tags: unauth,misconfig
+  metadata:
+    max-request: 1
 
-requests:
+http:
   - method: GET
     path:
       - "{{BaseURL}}/config.json"
