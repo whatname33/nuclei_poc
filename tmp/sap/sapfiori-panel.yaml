@@ -7,12 +7,10 @@ info:
   description: SAP Fiori login panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:sap:fiori:*:*:*:*:erp_hcm:*:*:*
   metadata:
     max-request: 2
-    vendor: sap
-    product: fiori
   tags: panel,sap,fiori
 
 http:
@@ -36,4 +34,5 @@ http:
           - "/irj/portal/fiori"
         part: body
         condition: and
-# digest: 4b0a004830460221008d45ff6e4a72185939611be982669329085b2744663f44315e37d044c00718f6022100953f20fe985a3360607de72a675a707d4db518d8a72faae6a90b15a13424dc4e:922c64590222798bb761d5b6d8e72950
+
+# digest: 4b0a00483046022100ebfa6eeccf5f17fa1a1ebbc42eb4b19a17177c62ecf5da450987a516ba73dc16022100e2acef5897254e161aa46c3226d91b4dff22444d7e87784432558fd28f9d59e3:922c64590222798bb761d5b6d8e72950

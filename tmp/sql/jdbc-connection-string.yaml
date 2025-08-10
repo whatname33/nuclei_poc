@@ -3,12 +3,10 @@ id: jdbc-connection-string
 info:
   name: JDBC Connection String Disclosure
   author: Ice3man
-  severity: unknown
+  severity: info
   tags: exposure,token
-  metadata:
-    max-request: 1
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}"

@@ -7,15 +7,11 @@ info:
   description: Tiki Wiki CMS Groupware login panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:tiki:tikiwiki_cms\/groupware:*:*:*:*:*:*:*:*
   metadata:
     max-request: 2
-    vendor: tiki
-    product: tikiwiki_cms\/groupware
-    shodan-query: http.html:"tiki wiki"
-    fofa-query: body="tiki wiki"
-  tags: panel,tikiwiki,tiki
+  tags: panel,tikiwiki
 
 http:
   - method: GET
@@ -33,4 +29,5 @@ http:
         words:
           - "Tiki Wiki CMS Groupware"
         part: body
-# digest: 4a0a004730450221008e295792220b3ccfb2da5596b655d97d65ee158751b8e47fb40fe686ef056ba202202a912e137e215843c62e6e7b8d96a68d59974cce97b73e4c535adde6fc5f0b29:922c64590222798bb761d5b6d8e72950
+
+# digest: 4a0a0047304502210081be52d44698755f1fa66db1985942359bf0300fbb4f93699d4db22fc4b5e4760220139f1fe058163f2d801ff3d4a96b1ab3dc375be5ceaf18e6af8dbfb748364d8d:922c64590222798bb761d5b6d8e72950
