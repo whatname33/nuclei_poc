@@ -15,11 +15,27 @@ info:
     cvss-score: 8.3
     cwe-id: CWE-522
   metadata:
-    max-request: 12
+    max-request: 13
     shodan-query: 'HTTP/1.0 401 Please Authenticate\r\nWWW-Authenticate: Basic realm="Please Login"'
   tags: default-login,goip,gsm
 
+flow: http(1) && http(2)
+
 http:
+  - raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+
+    matchers:
+      - type: word
+        words:
+          - "GoIP"
+          - "Please Authenticate"
+        condition: or
+        internal: true
+
+  - raw:
   - raw:
       - |
         GET /default/en_US/status.html HTTP/1.1
@@ -53,4 +69,4 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a0047304502204c57842288cef058fecc86826a26dfc26ab5253202b81e83310006efc2ff11f8022100b540efef1033797e6eccf0441935ffc13a5e0637c36330be456e93afda4506de:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a004730450220702869520441981bbfcbcded596a9addd522d8173b17a3d7975d848214125f2f022100df57dc852aca88466633f374a29a4b1fcf845035840b3ae5aa87c76f9700d74d:922c64590222798bb761d5b6d8e72950
