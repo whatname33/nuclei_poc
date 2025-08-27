@@ -4,7 +4,7 @@ info:
   name: Adobe Connect Central Version
   author: dhiyaneshDk
   severity: info
-  tags: adobe,misconfig
+  tags: adobe
   metadata:
     max-request: 1
 

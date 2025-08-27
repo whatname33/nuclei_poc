@@ -4,13 +4,12 @@ info:
   name: Jolokia - List
   author: pussycat0x
   severity: low
-  description: Jolokia listing enabled.
   reference:
     - https://thinkloveshare.com/hacking/ssrf_to_rce_with_jolokia_and_mbeans/
     - https://github.com/laluka/jolokia-exploitation-toolkit
+  tags: jolokia,springboot,tomcat,misconfig
   metadata:
     max-request: 2
-  tags: jolokia,springboot,tomcat,misconfig
 
 http:
   - method: GET
@@ -19,7 +18,6 @@ http:
       - "{{BaseURL}}/actuator/jolokia/list"
 
     stop-at-first-match: true
-
     matchers-condition: and
     matchers:
       - type: status
@@ -30,4 +28,3 @@ http:
         part: body
         words:
           - '"type":"list"'
-# digest: 4a0a00473045022100e884e2a2b1d4a31a71683063405b0ffb17212d4ada0a93e3b398b0d382f50eba02200abbd9577cff04519cd3242c49841de5a0f600ee06e4ac9c404c48eabdebecec:922c64590222798bb761d5b6d8e72950

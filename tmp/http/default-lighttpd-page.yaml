@@ -5,10 +5,11 @@ info:
   author: dhiyaneshDK
   severity: info
   metadata:
+    max-request: 1
     shodan-query: http.title:"Powered by lighttpd"
   tags: tech,lighttpd
 
-requests:
+http:
   - method: GET
     path:
       - '{{BaseURL}}'

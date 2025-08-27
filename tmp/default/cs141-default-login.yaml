@@ -9,12 +9,9 @@ info:
     - https://www.generex.de/media/pages/packages/documents/manuals/f65348d5b6-1628841637/manual_CS141_en.pdf
   classification:
     cwe-id: CWE-798
-    cpe: cpe:2.3:h:generex:cs141:*:*:*:*:*:*:*:*
   metadata:
     max-request: 3
     shodan-query: http.html:"CS141"
-    product: cs141
-    vendor: generex
   tags: hiawatha,iot,default-login
 
 http:
@@ -37,8 +34,8 @@ http:
         - cs141-snmp
         - engineer
         - guest
-    stop-at-first-match: true
 
+    stop-at-first-match: true
     matchers-condition: and
     matchers:
       - type: word
@@ -48,13 +45,6 @@ http:
         condition: and
         part: header
 
-      - type: word
-        part: body
-        words:
-          - 'accessToken'
-          - 'AdminFirstTime'
-        condition: and
-
       - type: status
         status:
           - 200
@@ -63,4 +53,5 @@ http:
       - type: kval
         kval:
           - accessToken
-# digest: 4a0a004730450220270e08669f74e6dd78aded763c331b33328e3cdc3d27b31753a0aa605352256b022100cea618b9c6848ab5f145e224a34a88d11dd6dba0b35f30e73aa64c2fba2b8992:922c64590222798bb761d5b6d8e72950
+
+# Enhanced by mp on 2022/03/07

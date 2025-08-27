@@ -7,16 +7,13 @@ info:
   description: XXLJOB admin login panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0.0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:xuxueli:xxl-job:*:*:*:*:*:*:*:*
   metadata:
-    verified: true
     max-request: 2
-    vendor: xuxueli
-    product: xxl-job
+    verified: true
     shodan-query: http.favicon.hash:1691956220
-    fofa-query: icon_hash=1691956220
-  tags: panel,xxljob,login,xuxueli
+  tags: panel,xxljob,login
 
 http:
   - method: GET
@@ -25,7 +22,6 @@ http:
       - "{{BaseURL}}/toLogin"
 
     stop-at-first-match: true
-
     matchers-condition: and
     matchers:
       - type: word
@@ -43,4 +39,5 @@ http:
         group: 1
         regex:
           - '"admin_version":"(.*?)"'
-# digest: 4b0a00483046022100db08d8f812b8600ec1b29c891ce950af7a0cbcaeb27748fd72167ed00d2bf104022100f527a28f318482a0b52b020d9473a04b3c7cc602154ca825d6b9bddc18315039:922c64590222798bb761d5b6d8e72950
+
+# Enhanced by md on 2023/01/26
