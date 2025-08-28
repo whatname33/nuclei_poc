@@ -3,15 +3,12 @@ id: mrtg-detect
 info:
   name: Detect MRTG
   author: geeknik
-  severity: info
   description: The Multi Router Traffic Grapher
-  reference:
-    - https://oss.oetiker.ch/mrtg/
+  reference: https://oss.oetiker.ch/mrtg/
+  severity: info
   tags: tech,mrtg
-  metadata:
-    max-request: 3
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}"

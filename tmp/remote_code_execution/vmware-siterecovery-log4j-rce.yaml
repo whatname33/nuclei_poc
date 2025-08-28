@@ -32,32 +32,35 @@ http:
     matchers-condition: and
     matchers:
       - type: word
-        part: interactsh_protocol # Confirms the DNS Interaction
-        words:
-          - "dns"
-
-      - type: word
         part: body
         words:
           - '<title>Error - Site Recovery</title>'
 
+      - type: word
+        part: interactsh_protocol # Confirms the DNS Interaction
+        words:
+          - "dns"
+
       - type: regex
         part: interactsh_request
         regex:
-
+          - '\d{6}\.([a-zA-Z0-9\.\-]+)\.([a-z0-9]+)\.([a-z0-9]+)\.([a-z0-9]+)\.\w+'
 
     extractors:
       - type: kval
         kval:
-
+          - interactsh_ip
 
       - type: regex
+        part: interactsh_request
         group: 2
         regex:
-        part: interactsh_request
+          - '\d{6}\.([a-zA-Z0-9\.\-]+)\.([a-z0-9]+)\.([a-z0-9]+)\.([a-z0-9]+)\.\w+'
 
       - type: regex
+        part: interactsh_request
         group: 1
         regex:
-        part: interactsh_request
-# digest: 4a0a004730450221008bbf8fea272104f5df9e10c518ea4df66beb781fed40dad4ade30aa2fdee511702200172b3cddff074a950e78583211d9931fa13e40040f2791e9e62b36a6df16f8d:922c64590222798bb761d5b6d8e72950
+          - '\d{6}\.([a-zA-Z0-9\.\-]+)\.([a-z0-9]+)\.([a-z0-9]+)\.([a-z0-9]+)\.\w+'
+
+# digest: 4a0a00473045022100a078cca053515772e3c7c35c3103dfa2057c860d5f6b4de412f4c3e4d3fbd19802200676fededeb777ab4b6f32734d1c326f536531a7f5c4d74ab48aec1aafd25beb:922c64590222798bb761d5b6d8e72950

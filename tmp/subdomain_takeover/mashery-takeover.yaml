@@ -4,7 +4,6 @@ info:
   name: mashery takeover detection
   author: pdteam
   severity: high
-  description: mashery takeover was detected.
   reference:
     - https://github.com/EdOverflow/can-i-take-over-xyz/issues/14
   metadata:
@@ -26,8 +25,4 @@ http:
         words:
           - Unrecognized domain <strong>
 
-    extractors:
-      - type: dsl
-        dsl:
-          - cname
-# digest: 4b0a00483046022100f81920c736321bca10afd8fd56660a14b18cbf1d5f92160bc63360cf70df944e022100dd5f30cfe9487d27864e7e80f82d0cf7646d492f37e2531e29bcc02eb5b9a474:922c64590222798bb761d5b6d8e72950
+# digest: 490a0046304402201bc3a61e9afd2e60460aab171e75be7cc3ec4b527104d7b92eb26764ccf4eec50220646d6d81a5afcca6d17eea7501c7535a588b7cd0aca10f5f56ff7488a72e1516:922c64590222798bb761d5b6d8e72950

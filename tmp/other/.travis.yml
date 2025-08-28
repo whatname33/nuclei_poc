@@ -1,15 +1,17 @@
 language: go
-go_import_path: github.com/sirupsen/logrus
-git:
-  depth: 1
-env:
-  - GO111MODULE=on
-go: 1.15.x
-os: linux
-install:
-  - ./travis/install.sh
-script:
-  - cd ci
-  - go run mage.go -v -w ../ crossBuild
-  - go run mage.go -v -w ../ lint
-  - go run mage.go -v -w ../ test
+
+go:
+    - "1.4.x"
+    - "1.5.x"
+    - "1.6.x"
+    - "1.7.x"
+    - "1.8.x"
+    - "1.9.x"
+    - "1.10.x"
+    - "1.11.x"
+    - "1.12.x"
+    - "1.13.x"
+    - "1.14.x"
+    - "tip"
+
+go_import_path: gopkg.in/yaml.v2

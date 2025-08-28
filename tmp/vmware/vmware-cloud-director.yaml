@@ -7,18 +7,12 @@ info:
   description: VMware Cloud Director login panel was detected.
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cvss-score: 0
     cwe-id: CWE-200
-    cpe: cpe:2.3:a:vmware:cloud_director:*:*:*:*:*:*:*:*
   metadata:
     verified: true
     max-request: 1
-    vendor: vmware
-    product: cloud_director
-    shodan-query:
-      - title:"Welcome to VMware Cloud Director"
-      - http.title:"welcome to vmware cloud director"
-    fofa-query: title="welcome to vmware cloud director"
-    google-query: intitle:"welcome to vmware cloud director"
+    shodan-query: title:"Welcome to VMware Cloud Director"
   tags: panel,vmware
 
 http:
@@ -36,4 +30,5 @@ http:
       - type: status
         status:
           - 200
-# digest: 4b0a00483046022100962dcbf92c63a56e81dfd6122ce2bd38fc7b2ba04d486ea779dcc2f033b2f6d60221008cb1444f5c65b0f29ab6d013ce079c2bdb975cc9fe9d3632fe17a072721af01d:922c64590222798bb761d5b6d8e72950
+
+# digest: 490a0046304402207b59e7d2d9d594245cd3ee0348a1f8a610dff7bbb2749225006e32ba1bff866602206293f147444e8802eadfa989b5b8997e3e993b9efae500b7d76811af03e12786:922c64590222798bb761d5b6d8e72950

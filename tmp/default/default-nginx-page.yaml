@@ -7,7 +7,6 @@ info:
   metadata:
     shodan-query: http.title:"Welcome to nginx!"
   tags: tech,nginx
-  mongoid: 0000
 
 requests:
   - method: GET

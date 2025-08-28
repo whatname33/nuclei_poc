@@ -31,7 +31,6 @@ http:
 
         new-registration-name=test&action=seatreg_create_submit&seatreg-admin-nonce={{seatreg-admin-nonce}}&_wp_http_referer=http://interact.sh&submit=Create+new+registration
 
-    cookie-reuse: true
     matchers:
       - type: dsl
         dsl:
@@ -47,5 +46,4 @@ http:
         regex:
           - '"seatreg\-admin\-nonce" value="([0-9a-z]+)"'
         internal: true
-
-# digest: 4b0a00483046022100aae5635d1245c27aa4a6aa316eccb6e1e04f6b9040d1d4a1aa0559947d257f88022100c822ecfb11bea0c448a201fcd020bea5d98941f4cdcbf98120d9a94df908de4c:922c64590222798bb761d5b6d8e72950
+# digest: 490a00463044022042b9aaa434c1f11207dfeb87b4a5a47ac883db420116738f08780372e06cf2310220308ef058c398ce15212a78101f48c44657e2877d3d54dd2efba12e282d1debbc:922c64590222798bb761d5b6d8e72950

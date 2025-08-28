@@ -4,7 +4,7 @@ info:
   name: Alibaba Mongoshake Unauth
   author: pikpikcu
   severity: info
-  tags: mongoshake,unauth,alibaba,misconfig
+  tags: mongoshake,unauth,alibaba
   metadata:
     max-request: 1
 

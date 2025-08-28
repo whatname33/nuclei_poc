@@ -43,7 +43,7 @@ http:
 
       - type: dsl
         dsl:
-          - contains(tolower(header), 'sdbsessionid')
+          - contains(tolower(all_headers), 'sdbsessionid')
 
       - type: word
         part: body

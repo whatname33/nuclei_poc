@@ -6,15 +6,13 @@ info:
   severity: info
   tags: intercom,tech
   reference: https://www.intercom.com
-  metadata:
-    max-request: 1
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}"
 
-    host-redirects: true
+    redirects: true
     max-redirects: 3
     matchers:
       - type: word
