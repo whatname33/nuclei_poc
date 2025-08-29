@@ -9,15 +9,16 @@ info:
   metadata:
     plugin_namespace: siteorigin-panels
     wpscan: https://wpscan.com/plugin/siteorigin-panels
-  tags: tech,wordpress,wp-plugin,top-200
+  tags: tech,wordpress,wp-plugin,top-100,top-200
 
-http:
+requests:
   - method: GET
+
     path:
       - "{{BaseURL}}/wp-content/plugins/siteorigin-panels/readme.txt"
 
     payloads:
-      last_version: helpers/wordpress/plugins/siteorigin-panels.txt
+      last_version: ../../../helpers/wordpress/plugins/siteorigin-panels.txt
 
     extractors:
       - type: regex
@@ -46,4 +47,3 @@ http:
         part: body
         regex:
           - '(?i)Stable.tag:\s?([\w.]+)'
-# digest: 4b0a00483046022100ad7d6f05fb6d8eb7cb8cca136aff405cd4e1cd55a22dc33ea846a2371e49a680022100f4a8984be7ac1309ea046e6c8c57eea698908426de8cc32ad65437ac9ab17457:922c64590222798bb761d5b6d8e72950

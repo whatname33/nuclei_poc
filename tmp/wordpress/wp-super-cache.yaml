@@ -11,13 +11,14 @@ info:
     wpscan: https://wpscan.com/plugin/wp-super-cache
   tags: tech,wordpress,wp-plugin,top-100,top-200
 
-http:
+requests:
   - method: GET
+
     path:
       - "{{BaseURL}}/wp-content/plugins/wp-super-cache/readme.txt"
 
     payloads:
-      last_version: helpers/wordpress/plugins/wp-super-cache.txt
+      last_version: ../../../helpers/wordpress/plugins/wp-super-cache.txt
 
     extractors:
       - type: regex
@@ -46,4 +47,3 @@ http:
         part: body
         regex:
           - '(?i)Stable.tag:\s?([\w.]+)'
-# digest: 4b0a00483046022100ea3c4d8a9f211a46d77761706eed22499ec0d9d2cda790b123c8ba8963899c1b022100e685a9e1965f2d344c2f92eb996ae0d7c3fecec4e95cb76b97b3749b97a697a6:922c64590222798bb761d5b6d8e72950

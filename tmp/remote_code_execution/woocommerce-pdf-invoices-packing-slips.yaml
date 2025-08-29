@@ -11,13 +11,14 @@ info:
     wpscan: https://wpscan.com/plugin/woocommerce-pdf-invoices-packing-slips
   tags: tech,wordpress,wp-plugin,top-200
 
-http:
+requests:
   - method: GET
+
     path:
       - "{{BaseURL}}/wp-content/plugins/woocommerce-pdf-invoices-packing-slips/readme.txt"
 
     payloads:
-      last_version: helpers/wordpress/plugins/woocommerce-pdf-invoices-packing-slips.txt
+      last_version: ../../../helpers/wordpress/plugins/woocommerce-pdf-invoices-packing-slips.txt
 
     extractors:
       - type: regex
@@ -46,4 +47,3 @@ http:
         part: body
         regex:
           - '(?i)Stable.tag:\s?([\w.]+)'
-# digest: 490a004630440220407c8cea30a574111b84d9afd3b34a2f757491a0c1a4829146e5369e4c6970ff022010d287445f5084ed751ab4c1dd59cdf566f3a078e4165f15d2c57a43ed7ff66c:922c64590222798bb761d5b6d8e72950

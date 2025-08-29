@@ -11,13 +11,14 @@ info:
     wpscan: https://wpscan.com/plugin/webp-converter-for-media
   tags: tech,wordpress,wp-plugin,top-200
 
-http:
+requests:
   - method: GET
+
     path:
       - "{{BaseURL}}/wp-content/plugins/webp-converter-for-media/readme.txt"
 
     payloads:
-      last_version: helpers/wordpress/plugins/webp-converter-for-media.txt
+      last_version: ../../../helpers/wordpress/plugins/webp-converter-for-media.txt
 
     extractors:
       - type: regex
@@ -46,4 +47,3 @@ http:
         part: body
         regex:
           - '(?i)Stable.tag:\s?([\w.]+)'
-# digest: 4a0a0047304502210093aded5a746fcac6df58286c2ee2014e39d048544e9b3e6746a1fa3711aed09e02204b7821040c418df8a5f5827155d8b09b01c517af651fdde9fe5de76176eaebb2:922c64590222798bb761d5b6d8e72950
