@@ -10,7 +10,7 @@ info:
     - https://tools.ietf.org/html/rfc2577
   metadata:
     max-request: 1
-  tags: network,ftp,default-login
+  tags: network,ftp,default-login,tcp
 
 tcp:
   - inputs:
@@ -30,7 +30,8 @@ tcp:
         words:
           - "Anonymous access allowed,"
           - "Logged in anonymously"
-          - "230 "
+          - "Anonymous user logged"
+          - "Login successful"
         condition: or
 
       - type: word
@@ -39,6 +40,8 @@ tcp:
           - "HTTP/1.1"
           - "230."
           - ".230"
+          - "User cannot log"
+          - "ESMTP"
         negative: true
         condition: or
-# digest: 4b0a00483046022100f0c0a57f3d7f4a4463eda6592eeacbe9f3372efe7b1195d9e6896704fd080414022100aa838b93ff6472a8cbe729311e56030bc2237f30ba1ac6ba240d64d2689683db:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a00473045022100cae7e047e4083f19ed736a1194eca5e9b56bf3138813ffc85a675f3f58ff5db9022014fa71c8cc221b56342644ba08f94d081c819cff5332fa2aba3252d75f05d73c:922c64590222798bb761d5b6d8e72950
