@@ -4,7 +4,6 @@ info:
   name: Cluster Overview - Unauthenticated Dashboard Exposure
   author: tess
   severity: medium
-  description: Cluster Overview dashboard is exposed.
   metadata:
     verified: true
     max-request: 1
@@ -21,6 +20,7 @@ http:
 
     body: |
       username={{randstr}}&password=&redirectPath=
+    cookie-reuse: true
     redirects: true
 
     matchers-condition: and
@@ -35,4 +35,5 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a0047304502201d0392e7fccefa4da54823ddbb93a92bd9916ea5268cd5231b93075fc1afb5cc022100a224ab58b132305503313c898d506341adcb5342105cdf97f56fa116539829bf:922c64590222798bb761d5b6d8e72950
+
+# digest: 4a0a00473045022100aeaab57c32cfbb260ff54f583e370a2db7dce3d4ad67c4c0c62b4eba16921f9202200c5c3bb1919b51093e76fdf89ab455b0807f32997ed7a0ddf5aaf7438db82764:922c64590222798bb761d5b6d8e72950
