@@ -1,9 +1,10 @@
 id: django-debug
 
 info:
-  name: Django Debug Method Enabled
+  name: Django Debug Configuration Enabled
   author: dhiyaneshDK,hackergautam
   severity: medium
+  description: Django debug configuration is enabled, which allows an attacker to obtain system configuration information such as paths or settings.
   metadata:
     max-request: 1
   tags: django,debug,misconfig
@@ -25,5 +26,4 @@ http:
       - type: status
         status:
           - 404
-
-# digest: 4a0a0047304502202a614c03d50ca1b37d8d426a98a25d88409ceb2551dafd3d690157691e5441a1022100e620ec7d15afb6e14a05c18d8169e24798334a20f10fa36b004a605cbf48d071:922c64590222798bb761d5b6d8e72950
+# digest: 490a0046304402201ad1f8c4c935ca3b36144431479e9cec7a1f8034256ca227ba077c8f1c206bf302202e6249657ecbd2be3a8dfccb03216e8f655ecbae168567ccd966dd4124eb2f08:922c64590222798bb761d5b6d8e72950
