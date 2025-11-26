@@ -4,24 +4,16 @@ info:
   name: hanwang-detect
   author: ffffffff0x
   severity: info
-  metadata:
-    fofa-query: 汉王人脸考勤管理系统
-  tags: hanwang
+  verified: true
+  description: |-
+    fofa: 汉王人脸考勤管理系统
+  tags: hanwang,tech
+  created: 2023/06/17
 
-requests:
-  - method: GET
-    path:
-      - "{{BaseURL}}"
-
-    redirects: true
-    max-redirects: 2
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - "汉王人脸考勤管理系统"
-        part: body
-
-      - type: status
-        status:
-          - 200
+rules:
+  r0:
+    request:
+      method: GET
+      path: /
+    expression: response.status == 200 && response.body.bcontains(b'汉王人脸考勤管理系统')
+expression: r0()

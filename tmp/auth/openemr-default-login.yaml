@@ -3,47 +3,25 @@ id: openemr-default-login
 info:
   name: OpenEMR - Default Admin Discovery
   author: Geekby
-  description: OpenEMR default admin credentials were discovered.
   severity: high
+  verified: true
+  description: |-
+    OpenEMR default admin credentials were discovered.
+    fofa: app="OpenEMR"
+    shodan: http.html:"OpenEMR"
   reference:
     - https://github.com/openemr/openemr-devops/tree/master/docker/openemr/6.1.0/#openemr-official-docker-image
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
-    cvss-score: 8.3
-    cwe-id: CWE-522
-  metadata:
-    max-request: 1
-    fofa-query: app="OpenEMR"
-    shodan-query: http.html:"OpenEMR"
   tags: openemr,default-login
+  created: 2023/06/17
 
-http:
-  - raw:
-      - |
-        POST /interface/main/main_screen.php?auth=login&site=default HTTP/1.1
-        Host: {{Hostname}}
-        Content-Type: application/x-www-form-urlencoded
-
-        new_login_session_management=1&languageChoice=1&authUser={{user}}&clearPass={{pass}}&languageChoice=10
-
-    attack: pitchfork
-    payloads:
-      user:
-        - admin
-      pass:
-        - pass
-
-    matchers-condition: and
-    matchers:
-      - type: word
-        part: header
-        words:
-          - "main.php?token_main="
-          - "OpenEMR"
-        condition: and
-
-      - type: status
-        status:
-          - 302
-
-# Enhanced by mp on 2022/07/15
+rules:
+  r0:
+    request:
+      method: POST
+      path: /interface/main/main_screen.php?auth=login&site=default
+      body: new_login_session_management=1&languageChoice=1&authUser=admin&clearPass=pass&languageChoice=10
+    expression: |
+      response.status == 302 &&
+      response.raw_header.bcontains(b'main.php?token_main=') &&
+      response.raw_header.bcontains(b'OpenEMR')
+expression: r0()

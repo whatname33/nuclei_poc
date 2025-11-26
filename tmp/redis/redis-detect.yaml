@@ -4,31 +4,26 @@ info:
   name: Redis Service - Detect
   author: pussycat0x
   severity: info
-  description: Redis service was detected.
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cwe-id: CWE-200
-  metadata:
-    max-request: 2
-    shodan-query: product:"redis"
-    verified: true
-  tags: network,redis,detect
+  verified: true
+  description: |-
+    Redis service was detected.
+  tags: network,redis
+  created: 2023/08/07
 
-tcp:
-  - inputs:
-      - data: "*1\r\n$4\r\ninfo\r\n"
-
-    host:
-      - "{{Hostname}}"
-      - "tls://{{Hostname}}"
-    port: 6380
-    read-size: 1024
-
-    matchers:
-      - type: word
-        words:
-          - "DENIED Redis"
-          - "CONFIG REWRITE"
-          - "NOAUTH Authentication"
-        condition: or
-# digest: 4b0a00483046022100a15a823315d7030c37e1bac43d0b55b7720247ec94e2692bcacd87f11d307c62022100957d82da51da77e8a2cd856de747273d367c9cf2b704772752c7a0786535dbf7:922c64590222798bb761d5b6d8e72950
+set:
+  hostname: request.url.host
+  host: request.url.domain
+rules:
+  r0:
+    request:
+      type: tcp
+      host: "{{hostname}}"
+      data: "*1\r\n$4\r\ninfo\r\n"
+    expression: response.raw.bcontains(b'DENIED Redis') || response.raw.bcontains(b'CONFIG REWRITE') || response.raw.bcontains(b'NOAUTH Authentication') || response.raw.bcontains(b'72656469735f76657273696f6')
+  r1:
+    request:
+      type: tcp
+      host: "{{host}}:6379"
+      data: "*1\r\n$4\r\ninfo\r\n"
+    expression: response.raw.bcontains(b'DENIED Redis') || response.raw.bcontains(b'CONFIG REWRITE') || response.raw.bcontains(b'NOAUTH Authentication') || response.raw.bcontains(b'72656469735f76657273696f6')
+expression: r0() || r1()
