@@ -7,10 +7,9 @@ info:
   tags: redirect,dast
 
 http:
-  - pre-condition:
-      - type: dsl
-        dsl:
-          - 'method == "GET"'
+  - method: GET
+    path:
+      - "{{BaseURL}}"
 
     payloads:
       redirect:
@@ -153,9 +152,6 @@ http:
           - target_url
           - to_url
           - validate_url
-          - DirectTo
-          - relay
-          
         fuzz:
           - "https://{{redirect}}"
 

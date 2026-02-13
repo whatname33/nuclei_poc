@@ -7,6 +7,8 @@ info:
   reference:
     - http://ghostlulz.com/google-exposed-firebase-database/
   tags: tech,firebase
+  metadata:
+  mongoid: 0000
 
 requests:
   - method: GET

@@ -9,7 +9,7 @@ info:
   metadata:
     verified: true
     shodan-query: "DPTMMSG"
-  tags: network,tcp,sap,tech,discovery
+  tags: network,tcp,sap,tech
 
 tcp:
   - inputs:
