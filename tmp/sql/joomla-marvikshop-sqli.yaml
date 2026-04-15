@@ -10,10 +10,12 @@ info:
     - https://vulners.com/zdt/1337DAY-ID-38020
     - https://cxsecurity.com/issue/WLB-2022100015
     - https://extensions.joomla.org/
+  classification:
+    cwe-id: CWE-89
   metadata:
     verified: true
     max-request: 1
-  tags: joomla,marvikshop,sqli,unauth
+  tags: joomla,marvikshop,sqli,unauth,vuln
 
 http:
   - method: GET
@@ -27,4 +29,4 @@ http:
           - 'contains(content_type, "text/html")'
           - 'status_code == 200'
         condition: and
-# digest: 490a00463044022025808488572b7bbd1cbc9a8c72b7a5a26e193050d75e88597f62d4d7ad62073a02205fd6514378e758a4818d60ad3a3091784a8570648b8a84fb006a9dabf856573f:922c64590222798bb761d5b6d8e72950
+# digest: 490a0046304402201ebbb16a338d65eed0518aac8c05ee13ccee14c96787930d13ebcc7f1e7d721e022056a5981a5fdf80f6af2195e4cfb688dd6b3b152b241e99f991e48eb9426dd2a7:922c64590222798bb761d5b6d8e72950
