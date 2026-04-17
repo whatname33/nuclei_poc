@@ -11,12 +11,15 @@ info:
   classification:
     cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N
     cvss-score: 5.4
-    cwe-id: CWE-80
+    cwe-id: CWE-79,CWE-83
+    cpe: cpe:2.3:a:gnuboard:gnuboard5:*:*:*:*:*:*:*:*
   metadata:
     verified: true
     max-request: 1
     shodan-query: http.html:"Gnuboard"
-  tags: xss,gnuboard
+    product: gnuboard5
+    vendor: gnuboard
+  tags: xss,gnuboard,vuln
 
 http:
   - method: GET
@@ -38,5 +41,4 @@ http:
       - type: status
         status:
           - 200
-
-# digest: 4a0a00473045022100dabfa39b6636881c35a5a30673d9b76fcc447af1e2b2c6d3cedb815adfa392d402205ff4c64778cec76efddddd5d376938139916aad734b7077d3fa0286a76ff45d9:922c64590222798bb761d5b6d8e72950
+# digest: 4b0a00483046022100bd258a0c4df21a9f950f2b5fd8b57e34fe6ebb11c6a227b26b7bf47c9bd81612022100b38fbab3265c35ff47fc17da0acd51b596b51b21a76b7332011a65134f5b04c8:922c64590222798bb761d5b6d8e72950
