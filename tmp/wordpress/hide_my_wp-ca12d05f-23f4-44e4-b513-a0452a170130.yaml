@@ -1,31 +1,31 @@
-id: tutor_pro-ad4e5243-e41a-4624-b9cd-47ab79637560
+id: hide_my_wp-ca12d05f-23f4-44e4-b513-a0452a170130
 
 info:
   name: >
-    Tutor LMS Pro <= 3.9.8 - Missing Authorization
+    Hide My WP Ghost < 7.0.00 - Unauthenticated Open Redirect
   author: topscoder
-  severity: high
+  severity: low
   description: >
     
   reference:
     - https://github.com/topscoder/nuclei-wordfence-cve
-    - https://www.wordfence.com/threat-intel/vulnerabilities/id/ad4e5243-e41a-4624-b9cd-47ab79637560?source=api-scan
+    - https://www.wordfence.com/threat-intel/vulnerabilities/id/ca12d05f-23f4-44e4-b513-a0452a170130?source=api-scan
   classification:
     cvss-metrics: 
     cvss-score: 
     cve-id: 
   metadata:
-    fofa-query: "wp-content/plugins/tutor-pro/"
-    google-query: inurl:"/wp-content/plugins/tutor-pro/"
-    shodan-query: 'http.html:"wp-content/plugins/tutor-pro/"'
-  tags: cve,wordpress,wp-plugin,tutor-pro,high,candidate
+    fofa-query: "wp-content/plugins/hide-my-wp/"
+    google-query: inurl:"/wp-content/plugins/hide-my-wp/"
+    shodan-query: 'http.html:"wp-content/plugins/hide-my-wp/"'
+  tags: cve,wordpress,wp-plugin,hide-my-wp,low,candidate
 
 http:
   - method: GET
     redirects: true
     max-redirects: 3
     path:
-      - "{{BaseURL}}/wp-content/plugins/tutor-pro/readme.txt"
+      - "{{BaseURL}}/wp-content/plugins/hide-my-wp/readme.txt"
 
     extractors:
       - type: regex
@@ -43,9 +43,9 @@ http:
 
       - type: word
         words:
-          - "tutor-pro"
+          - "hide-my-wp"
         part: body
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 3.9.8')
+          - compare_versions(version, '< 7.0.00')
