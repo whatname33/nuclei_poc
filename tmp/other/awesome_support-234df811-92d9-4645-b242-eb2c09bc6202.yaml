@@ -1,31 +1,31 @@
-id: wp_emember-e08fc1d8-870a-4f2b-96bd-ffeeb9803d89
+id: awesome_support-234df811-92d9-4645-b242-eb2c09bc6202
 
 info:
   name: >
-    eMember <= 10.2.2 - Missing Authorization
+    Awesome Support <= 6.1.7 - Missing Authorization
   author: topscoder
   severity: high
   description: >
     
   reference:
     - https://github.com/topscoder/nuclei-wordfence-cve
-    - https://www.wordfence.com/threat-intel/vulnerabilities/id/e08fc1d8-870a-4f2b-96bd-ffeeb9803d89?source=api-scan
+    - https://www.wordfence.com/threat-intel/vulnerabilities/id/234df811-92d9-4645-b242-eb2c09bc6202?source=api-scan
   classification:
     cvss-metrics: 
     cvss-score: 
     cve-id: 
   metadata:
-    fofa-query: "wp-content/plugins/wp-eMember/"
-    google-query: inurl:"/wp-content/plugins/wp-eMember/"
-    shodan-query: 'http.html:"wp-content/plugins/wp-eMember/"'
-  tags: cve,wordpress,wp-plugin,wp-eMember,high,candidate
+    fofa-query: "wp-content/plugins/awesome-support/"
+    google-query: inurl:"/wp-content/plugins/awesome-support/"
+    shodan-query: 'http.html:"wp-content/plugins/awesome-support/"'
+  tags: cve,wordpress,wp-plugin,awesome-support,high,candidate
 
 http:
   - method: GET
     redirects: true
     max-redirects: 3
     path:
-      - "{{BaseURL}}/wp-content/plugins/wp-eMember/readme.txt"
+      - "{{BaseURL}}/wp-content/plugins/awesome-support/readme.txt"
 
     extractors:
       - type: regex
@@ -43,9 +43,9 @@ http:
 
       - type: word
         words:
-          - "wp-eMember"
+          - "awesome-support"
         part: body
 
       - type: dsl
         dsl:
-          - compare_versions(version, '<= 10.2.2')
+          - compare_versions(version, '<= 6.1.7')
