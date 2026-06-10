@@ -1,29 +1,30 @@
 id: ssh-server-enumeration
-
 info:
-  name: SSH Server Software Enumeration
   author: Ice3man543,tarunKoyalwar
-  severity: info
   metadata:
-    verified: true
     max-request: 2
     shodan-query: product:"OpenSSH"
+    verified: true
+  name: SSH Server Software Enumeration
+  severity: info
   tags: js,ssh,enum,network
-
 javascript:
-  - pre-condition: |
-      isPortOpen(Host,Port);
-    code: |
-      var m = require("nuclei/ssh");
-      var c = m.SSHClient();
-      var response = c.ConnectSSHInfoMode(Host, Port);
-      Export(response);
-    args:
-      Host: "{{Host}}"
-      Port: "22"
+- args:
+    Host: '{{Host}}'
+    Port: '22'
+  code: 'var m = require("nuclei/ssh");
 
-    extractors:
-      - type: json
-        json:
-          - '.ServerID.Raw'
-# digest: 4a0a00473045022100f430d181ad11f89457cd243ee590bd9cdf1eeb722d2168ee0fb658989bc293bf02206cd1717181cc8b0bf8395717d2f51d6d7d66bc321c0dc581aebbadf214c9df97:922c64590222798bb761d5b6d8e72950
+    var c = m.SSHClient();
+
+    var response = c.ConnectSSHInfoMode(Host, Port);
+
+    to_json(response);
+
+    '
+  extractors:
+  - json:
+    - .ServerID.Raw
+    type: json
+  pre-condition: 'isPortOpen(Host,Port);
+
+    '
