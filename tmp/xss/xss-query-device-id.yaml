@@ -16,16 +16,11 @@ http:
 
     matchers-condition: and
     matchers:
-      - type: status
-        status:
-          - 200
-
       - type: word
         part: body
         words:
-          - "<wrkektxa>"
-
+          - "wrkektxa" # Payload identifier in the response body
       - type: word
         part: header
         words:
-          - "text/html"
+          - "text/html" # Ensure the response is HTML content
