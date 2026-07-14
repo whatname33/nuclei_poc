@@ -1,28 +1,31 @@
-http:
-- extractors:
-  - dsl:
-    - x_recruiting
-    type: dsl
-  matchers:
-  - part: header
-    type: word
-    words:
-    - 'X-Recruiting:'
-  max-redirects: 2
-  method: GET
-  path:
-  - '{{BaseURL}}'
-  redirects: true
 id: x-recruiting-header
+
 info:
-  author: geeknik
-  description: Websites that advertise jobs via HTTP headers
-  metadata:
-    max-request: 1
-    shodan-query: 'X-Recruiting:'
-    verified: true
   name: X-Recruiting Header
-  reference:
-  - https://webtechsurvey.com/response-header/x-recruiting
+  author: geeknik
   severity: info
-  tags: miscellaneous,misc,hiring,jobs,employment,generic
+  description: Websites that advertise jobs via HTTP headers
+  reference:
+    - https://webtechsurvey.com/response-header/x-recruiting
+  metadata:
+    verified: true
+    shodan-query: "X-Recruiting:"
+  tags: misc,hiring,jobs,employment
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    redirects: true
+    max-redirects: 2
+    matchers:
+      - type: word
+        part: header
+        words:
+          - 'X-Recruiting:'
+
+    extractors:
+      - type: dsl
+        dsl:
+          - 'x_recruiting'
