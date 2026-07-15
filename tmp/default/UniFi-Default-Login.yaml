@@ -3,13 +3,13 @@ id: Unifi-Default-Login
 info:
   name: Unifi Default Login
   author: YashVardhanTripathi
-  severity: High
+  severity: high
   description: Unifi Default Credential Access Extraction
   tags:
     - tech
     - Unifi
 
-http:
+requests:
   - method: POST
     path:
       - "{{BaseURL}}/api/login"
