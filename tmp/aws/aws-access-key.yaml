@@ -1,22 +1,31 @@
-id: aws-access-key
-
 info:
-  name: Amazon Web Services Access Key ID - Detect
-  author: gaurang
-  severity: info
-  description: Amazon Web Services Access Key ID token was detected.
+  id: aws-access-key
+  name: AWS Access Key ID Value - Detect
+  author: OpenAI
+  description: Template to detect AWS access key ID values in request headers or parameters
+  severity: Info
   classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0
-    cwe-id: CWE-200
-  tags: file,keys,token,aws,amazon
+    country: any
+    tags:
+      - aws
+      - access key
+      - security
+      - sensitive information
 
-file:
-  - extensions:
-      - all
+  matcher-condition: and
 
-    extractors:
-      - type: regex
-        regex:
-          - "(A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"
-# digest: 4a0a0047304502204131589055933e9abecb047239e920aaa9798065f2947a61b8a2ddd8be6fa73a0221009f95d88336637ef94923f4724a94bf96e48debf07677bae0fa3a2e6988751396:922c64590222798bb761d5b6d8e72950
+  requests:
+      method: GET
+      path:
+        - "/"
+      description: Example request to trigger detection
+
+  matchers:
+    - pattern: '(A3T[A-Z0-9]|AKIA|AGPA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'
+      type: body
+      description: AWS access key ID found in request body
+ 
+  response:
+    - status:
+        - 200
+      description: Successful response status
