@@ -1,50 +1,30 @@
-http:
-- attack: pitchfork
-  matchers:
-  - condition: and
-    part: body
-    type: word
-    words:
-    - Change Password
-    - Logout
-    - XploitSPY
-  - status:
-    - 200
-    type: status
-  matchers-condition: and
-  max-redirects: 2
-  payloads:
-    pass:
-    - password
-    user:
-    - admin
-  raw:
-  - 'POST /login HTTP/1.1
-
-    Host: {{Hostname}}
-
-    Origin: {{RootURL}}
-
-    Content-Type: application/x-www-form-urlencoded
-
-    Referer: {{RootURL}}/login
-
-
-    username={{user}}&password={{pass}}&hostname={{Hostname}}
-
-    '
-  redirects: true
 id: xploitspy-default-login
-info:
-  author: andreluna
-  description: 'Default login and password to access administrator panel
 
-    '
-  metadata:
-    max-request: 1
-    shodan-query: html:XploitSPY
+info:
   name: XploitSPY - Default Login
-  reference:
-  - https://github.com/XploitWizer-Community/XploitSPY
+  author: andreluna
   severity: high
+  verified: false
+  description: |-
+    Default login and password to access administrator panel
+  reference:
+    - https://github.com/XploitWizer-Community/XploitSPY
   tags: xploitspy,default-login
+  created: 2023/06/24
+
+set:
+  rooturl: request.url
+  hostname: request.url.host
+rules:
+  r0:
+    request:
+      method: POST
+      path: /login
+      headers:
+        Origin: "{{rooturl}}"
+        Content-Type: application/x-www-form-urlencoded
+        Referer: "{{rooturl}}/login"
+      body: username=admin&password=password&hostname={{hostname}}
+      follow_redirects: true
+    expression: response.status == 200 && response.body.bcontains(b'Change Password') && response.body.bcontains(b'Logout')
+expression: r0()
