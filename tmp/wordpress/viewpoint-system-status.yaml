@@ -4,10 +4,8 @@ info:
   name: ViewPoint System Status
   author: dhiyaneshDK
   severity: low
-  metadata:
-    max-request: 1
-    shodan-query: http.title:"ViewPoint System Status"
-  tags: status,exposure,viewpoint,misconfig
+  reference: https://www.shodan.io/search?query=http.title%3A%22ViewPoint+System+Status%22
+  tags: status,exposures,viewpoint
 
 http:
   - method: GET

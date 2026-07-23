@@ -1,16 +1,17 @@
 id: sip
 info:
-  name: Patton SmartNode $1 VoIP adapter http config
+  name: Polycom SoundStation $1
   author: nmap,cn-kali-team
   tags: detect,tech,sip,service
   severity: info
   metadata:
-    device_type: VoIP adapter
+    device_type: VoIP phone
     fallback:
     - get-request
-    operating_system: SmartWare $3
+    - httpoptions
+    info: 'MAC: $3'
     rarity: 5
-    version: $2 $4
+    version: $2
 tcp:
 - name: sipoptions
   inputs:
@@ -22,4 +23,4 @@ tcp:
   - name: sip
     type: regex
     regex:
-    - '(?i)^SIP/2\.0 405 Method Not Allowed\r\n(?:[^\r\n]+\r\n)*?User-Agent: Patton SN(\w+) 5BIS MxSF v([\w._-]+) [0-9A-F]+ R([\w._-]+) (\d\d\d\d-\d\d-\d\d) H323 SIP BRI\r\n\r\n'
+    - '(?i)^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PolycomSoundStationIP-SSIP_(\d+)-UA/([\d.]+)_(\w+)\r\n'

