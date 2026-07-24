@@ -1,17 +1,14 @@
 id: sip
 info:
-  name: Polycom SoundStation $1
+  name: Microsoft Live SIP client
   author: nmap,cn-kali-team
   tags: detect,tech,sip,service
   severity: info
   metadata:
-    device_type: VoIP phone
     fallback:
     - get-request
-    - httpoptions
-    info: 'MAC: $3'
+    operating_system: Windows
     rarity: 5
-    version: $2
 tcp:
 - name: sipoptions
   inputs:
@@ -23,4 +20,4 @@ tcp:
   - name: sip
     type: regex
     regex:
-    - '(?i)^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PolycomSoundStationIP-SSIP_(\d+)-UA/([\d.]+)_(\w+)\r\n'
+    - (?i)^SIP/2\.0 400 Invalid Contact information\r\n.*received=[\d.]+;ms-received-port=\d+;ms-received-cid=\d+\r\n
