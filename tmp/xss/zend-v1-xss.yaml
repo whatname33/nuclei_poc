@@ -10,13 +10,14 @@ info:
     - https://twitter.com/c3l3si4n/status/1600035722148212737
   classification:
     cpe: cpe:2.3:a:zend:zend_framework:1.12.2:*:*:*:*:*:*:*
+    cwe-id: CWE-79,CWE-83
   metadata:
     verified: true
     max-request: 2
     vendor: zend
     product: zend_framework
     google-query: inurl:"/tests/Zend/Http/"
-  tags: zend,zendframework,xss
+  tags: zend,zendframework,xss,vuln
 
 http:
   - method: GET
@@ -44,4 +45,4 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a00473045022100d38bfc319cc4addeb8c304024fed0a6d14dfdf3609da7b90c9d605fb6ed6cb3b02207bd1eb3ef32a03b99f3df0be9a816c9328a15847f8e5a28a687f3e71a2dbc725:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a0047304502204a203d7222e8f7858c4ecd3d04edab9d0a66e2f9315b3e30635d6051f3510739022100a6e1a319538d8fa1e62ccd63f07598160dc7335887ea064247c574df893c709d:922c64590222798bb761d5b6d8e72950
