@@ -1,18 +1,23 @@
 id: tor-socks-proxy
-
 info:
   name: Detect tor SOCKS proxy
   author: geeknik
   severity: info
-  metadata:
-    max-request: 1
-  tags: tech,tor,proxy,discovery
 
-http:
-  - method: GET
-    path:
-      - '{{BaseURL}}'
+requests:
+  - payloads:
+      Subdomains: /home/mahmoud/Wordlist/AllSubdomains.txt
+    attack: sniper
+    threads: 100
 
+    raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Subdomains}}
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0
+        Accept-Encoding: gzip, deflate
+        Accept: */*
+        
     matchers-condition: and
     matchers:
       - type: word
@@ -21,8 +26,6 @@ http:
           - "HTTPTunnelPort"
           - "SOCKSPort"
         condition: and
-
       - type: status
         status:
           - 501
-# digest: 4b0a00483046022100a437b4e3636f2dc06f4d4604df1eff03ddd846aa013805dfb85d44772eded31b022100df00806eef1bebc0867ba945712b3364ee248d9ff07ba94eaf0fdf1f53c25979:922c64590222798bb761d5b6d8e72950
