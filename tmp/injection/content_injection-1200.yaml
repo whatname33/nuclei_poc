@@ -3,7 +3,7 @@ id: Arbitrary Text Injection
 info:
   name: Arbitrary Text Injection
   author: Nikhil Kumar
-  severity: Low
+  severity: low
   tags:  injection
 
   

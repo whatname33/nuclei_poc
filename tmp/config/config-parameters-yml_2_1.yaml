@@ -3,10 +3,10 @@ id: config-parameters-yml
 info:
   name: DataBase Configuration Check
   author: SirBugs
-  severity: Critical
+  severity: critical
   description: Check for common database configuration keys.
 
-http:
+requests:
   - method: GET
     path:
       - "{{BaseURL}}/config/parameters.yml"
