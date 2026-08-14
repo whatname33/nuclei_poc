@@ -14,7 +14,7 @@ info:
     cwe-id: CWE-77
   metadata:
     max-request: 1
-  tags: cnvd2021,cnvd,eyoumail,rce
+  tags: cnvd2021,cnvd,eyoumail,rce,vuln
 
 http:
   - raw:
@@ -34,4 +34,4 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a00473045022100f181d46d3d2e74819331b2a4169b01efb1d42df2e201f60831c779070550f51202207ef66ae62f3d77d753c0ae17e60e999d8f75ed523804e98102f673e59b2a124c:922c64590222798bb761d5b6d8e72950
+# digest: 4a0a00473045022100905490c927869af4b7cf56c5f6ebe64fc8d641c1097257e827dae90a87aaf3f002203f406db473a5e8f7117d1b5b118d8d11e31de43d58266ec02b223e6ffe99a798:922c64590222798bb761d5b6d8e72950

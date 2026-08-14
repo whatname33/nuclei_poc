@@ -1,32 +1,30 @@
-http:
-- host-redirects: true
-  matchers:
-  - part: body
-    type: word
-    words:
-    - <title>noVNC</title>
-  - status:
-    - 200
-    type: status
-  matchers-condition: and
-  max-redirects: 2
-  method: GET
-  path:
-  - '{{BaseURL}}/vnc.html'
-  - '{{BaseURL}}:6080/vnc.html'
-  stop-at-first-match: true
 id: novnc-login-panel
+
 info:
-  author: tess
-  classification:
-    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
-    cvss-score: 0
-    cwe-id: CWE-200
-  description: noVNC login panel was detected.
-  metadata:
-    max-request: 2
-    shodan-query: http.title:"noVNC"
-    verified: true
   name: noVNC Login Panel - Detect
+  author: tess
   severity: info
+  verified: true
+  description: |-
+    noVNC login panel was detected.
+    fofa: title="noVNC"
   tags: panel,novnc
+  created: 2023/11/30
+
+set:
+  host: request.url.domain
+rules:
+  r0:
+    request:
+      method: GET
+      path: /vnc.html
+      follow_redirects: true
+    expression: response.status == 200 && response.body.ibcontains(b'<title>noVNC</title>')
+  r1:
+    request:
+      method: GET
+      host: "{{host}}:6080"
+      path: /vnc.html
+      follow_redirects: true
+    expression: response.status == 200 && response.body.ibcontains(b'<title>noVNC</title>')
+expression: r0() || r1()

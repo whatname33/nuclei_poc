@@ -83,5 +83,5 @@ info:
   reference:
   - https://bdu.fstec.ru/vul/2023-05857
   - https://www.bitrix24.com/features/box/box-versions.php?module=landing
-  severity: Critical
+  severity: critical
   tags: bitrix,rce
