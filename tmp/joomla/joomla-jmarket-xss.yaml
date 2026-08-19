@@ -10,10 +10,12 @@ info:
     - https://packetstormsecurity.com/files/168581/Joomla-jMarket-5.15-Cross-Site-Scripting.html
     - https://cxsecurity.com/issue/WLB-2022100002
     - https://extensions.joomla.org/
+  classification:
+    cwe-id: CWE-79,CWE-83
   metadata:
     verified: true
     max-request: 1
-  tags: packetstorm,xss,packetstrom,joomla,jmarket
+  tags: packetstorm,xss,packetstrom,joomla,jmarket,vuln
 
 http:
   - method: GET
@@ -27,4 +29,4 @@ http:
           - 'contains(content_type, "text/html")'
           - 'contains_all(body, "onfocus=alert(document.domain) autofocus=", "catalog-results", "joomla")'
         condition: and
-# digest: 4a0a0047304502201a4f174e2f9e6297add64eafb16962d11d7f911458ff9cb38ec9c17671fd11ae02210080de0a00424c1a244fc8c5c7d3934d3c5e67f3807279db25459210b5b3b4378c:922c64590222798bb761d5b6d8e72950
+# digest: 490a004630440220509fffafb3798e00ca9ae07a0569a39db52fe255ff14f9bb6d60dba50f081f2e02204ce547489115cb8c3f16bbac1705f60939670598055d9a197e88f18f2994de85:922c64590222798bb761d5b6d8e72950
