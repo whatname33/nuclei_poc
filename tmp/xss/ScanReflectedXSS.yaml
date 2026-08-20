@@ -3,13 +3,13 @@ id: ScanReflectedXSS
 info:
   name: Scanner Cross-Site Scripting Reflected
   author: Hernan Rodriguez
-  severity: medium
+  severity: Medium
   description: XSS via GET parameter
   reference: https://www.linkedin.com/in/hernanrodriguez-/
     - 
   tags: xss
 
-requests:
+http:
   - method: GET
 
     path:
