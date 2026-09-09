@@ -7,7 +7,7 @@ info:
   name: iMind RCE version based detection
   reference:
   - https://bdu.fstec.ru/vul/2023-05317
-  severity: critical
+  severity: Critical
   tags: imind,rce
 http:
 - extractors:
