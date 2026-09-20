@@ -4,28 +4,46 @@ info:
   name: StackStorm Default Login
   author: PaperPen
   severity: high
-  verified: true
-  description: |-
-    A StackStorm default admin login was discovered.
-    fofa: app="stackstorm"
+  description: A StackStorm default admin login was discovered.
   reference:
     - https://github.com/StackStorm/st2-docker
-  tags: stackstorm,default-login
-  created: 2023/06/17
+  classification:
+    cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:L
+    cvss-score: 8.3
+    cwe-id: CWE-522
+    cpe: cpe:2.3:a:stackstorm:stackstorm:*:*:*:*:*:*:*:*
+  metadata:
+    max-request: 1
+    fofa-query: app="stackstorm"
+    product: stackstorm
+    vendor: stackstorm
+  tags: stackstorm,default-login,vuln
 
-set:
-  basic: base64("st2admin:Ch@ngeMe")
-rules:
-  r0:
-    request:
-      method: POST
-      path: /auth/tokens
-      headers:
+http:
+  - raw:
+      - |
+        POST /auth/tokens HTTP/1.1
+        Host: {{BaseURL}}
         Content-Type: application/json
-        Authorization: Basic {{basic}}
-    expression: |
-      response.status == 201 &&
-      response.body.bcontains(b'"user":') &&
-      response.body.bcontains(b'"token":') &&
-      response.body.bcontains(b'"expiry":')
-expression: r0()
+        Authorization: Basic {{base64(username + ':' + password)}}
+
+    attack: pitchfork
+    payloads:
+      username:
+        - st2admin
+      password:
+        - Ch@ngeMe
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - '"user":'
+          - '"token":'
+          - '"expiry":'
+        condition: and
+
+      - type: status
+        status:
+          - 201
+# digest: 4b0a00483046022100b87f1772811b4808d6bd2e297fa5e64e16fdcd5734a33f84d79325262e22f2b3022100f9318d4a0a0f0ab021149a0751234e08b89bebcb05174fb0d03bbb3c3a82a2fb:922c64590222798bb761d5b6d8e72950

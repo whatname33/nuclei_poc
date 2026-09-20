@@ -7,8 +7,8 @@ info:
   description: |
     Detect Interactsh SMTP service. Interactsh is used for Out-of-band Application Security Testing (OAST).
   metadata:
-    verified: true
-    max-request: 1
+    verified: false
+    max-requests: 1
     vendor: projectdiscovery
     product: interactsh
     shodan-query: "interactsh ESMTP Service ready"
