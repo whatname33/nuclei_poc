@@ -1,26 +1,33 @@
 id: ftp-detect
-
 info:
-  name: FTP Service - Detect
-  author: zan8in
-  severity: info
-  verified: true
-  description: |-
-    FTP service was detected.
-  tags: network,ftp,fingerprint
-  created: 2026/01/09
+  author: Mys7ic
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N
+    cwe-id: CWE-200
+  description: 'FTP service was detected.
 
-set:
-  host: request.url.host
-rules:
-  r0:
-    request:
-      type: tcp
-      host: "{{host}}"
-      steps:
-        - read:
-            read-size: 4096
-            read-timeout: 3
-            read-until: "\r\n"
-    expression: response.raw.bcontains(b"220") && response.raw.ibcontains(b"ftp")
-expression: r0()
+    '
+  metadata:
+    max-request: 1
+    verified: true
+  name: FTP Service - Detect
+  reference:
+  - https://www.rfc-editor.org/rfc/rfc959
+  severity: info
+  tags: network,ftp,detect,detection,tcp,discovery
+tcp:
+- host:
+  - '{{Hostname}}'
+  inputs:
+  - data: "\r\n"
+  matchers:
+  - regex:
+    - (?i)^220.*Ftp.*
+    type: regex
+  - case-insensitive: true
+    type: word
+    words:
+    - Ftp
+  matchers-condition: or
+  port: 21
+  read-size: 2048
