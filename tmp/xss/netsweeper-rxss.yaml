@@ -11,10 +11,10 @@ info:
   classification:
     cvss-metrics: CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N
     cvss-score: 7.2
-    cwe-id: CWE-80
+    cwe-id: CWE-79
   metadata:
     max-request: 1
-  tags: edb,xss,packetstorm,netsweeper,vuln
+  tags: edb,xss,packetstorm,netsweeper
 
 http:
   - method: GET
@@ -36,4 +36,4 @@ http:
       - type: status
         status:
           - 200
-# digest: 4a0a00473045022100823d19ab78234e00dad8ce4a498909c95cb8e75c552e28d10089ba3d5b1bb37f02201609ba61bb6a1121febb82bfcae308c323001325ac7dcda9e62bf4b2274fe1b2:922c64590222798bb761d5b6d8e72950
+# digest: 490a0046304402201517534440546fe94f150ee46c98233eef14999735d5f3222ca8ddb1ea4ccdaa022064bc6d9c0d1db4eb8702d9752ab9d3f5894ceec14d1911e03d11b3bf852f051f:922c64590222798bb761d5b6d8e72950
